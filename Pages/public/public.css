@@ -1,0 +1,73 @@
+.vis_img {
+  background-image: url(../../assets/david-travis-aVvZJC0ynBQ-unsplash.jpg);
+}
+.img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.margin-left {
+  margin-left: 5rem;
+}
+.about_divs {
+  height: 400px;
+  width: 50%;
+}
+.pros_img {
+  background-image: url(../../assets/alvaro-reyes-qWwpHwip31M-unsplash.jpg);
+}
+.flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.poa {
+  position: absolute;
+}
+.rotate {
+  transform: rotateX(180deg);
+}
+.display_align_c {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.display_just_c {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.text_align_l {
+  text-align: left;
+}
+.approach_divs {
+  height: 150px;
+  width: 210px;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  border-left: var(--primary-color) 2px solid;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+.margin_b {
+  margin-bottom: 1.5rem;
+}
+.app_img {
+  background-image: url(../../assets/anastasia-petrova-xu2WYJek5AI-unsplash.jpg);
+}
+.dru_img {
+  background-image: url(../../assets/thought-catalog-kkysaOcVE94-unsplash.jpg);
+}
+.the_img {
+  background-image: url(../../assets/mark-williams-5hvWQ5Xuji4-unsplash.jpg);
+}
+.phy_img {
+  background-image: url(../../assets/sincerely-media-inoZpsBQRqk-unsplash.jpg);
+}
+.ser_divs {
+  width: 500px;
+  height: 375px;
+  display: flex;
+  border: 0.5px #87ff65 solid;
+}

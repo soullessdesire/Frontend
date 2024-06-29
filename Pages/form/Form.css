@@ -1,0 +1,192 @@
+:root {
+  --primary-color: #3da33d;
+  --accent-color: #b9f9b3;
+  --secondary-color: #d9d9d9;
+  --meta-color: white;
+}
+
+.log_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.log_main .wrapper {
+  height: 80%;
+  border-radius: 2px;
+  width: 90%;
+  display: flex;
+  position: relative;
+  border: var(--secondary-color) 0.5px solid;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.fade-in {
+  opacity: 1;
+}
+.fade-out {
+  opacity: 0;
+}
+.log_main .wrapper .form {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  transition: all 0.5s ease;
+  border-radius: 2px;
+}
+.log_main .wrapper .form .links {
+  display: flex;
+}
+.log_main .wrapper .form form {
+  width: 300px;
+}
+form input:not(form input[type="checkbox"]) {
+  width: 270px;
+  height: 44px;
+  border-radius: 4px;
+  border: rgb(165, 164, 164) 1px solid;
+  outline: none;
+  padding: 2%;
+  margin: 3%;
+}
+form input:focus {
+  border: var(--primary-color) 1px solid;
+}
+form .input_wrapper {
+  position: relative;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  padding-left: 15px;
+  font-weight: 400;
+}
+form input[type="text"] ~ .after {
+  height: 20px;
+  width: fit-content;
+  top: 50%;
+  left: 5%;
+  position: absolute;
+  color: black;
+  transform: translateY(-100%);
+  padding: 10px;
+  transition: all 3s ease-in-out 0;
+  background-color: var(--meta-color);
+  transition: all 0.2s ease;
+}
+form input[type="text"]:hover ~ .after,
+form input[type="text"]:focus ~ .after {
+  color: var(--primary-color);
+  top: 20%;
+  font-size: small;
+  transition: all 3s ease-in-out 0;
+  font-weight: 400;
+}
+form input[type="email"] ~ .after {
+  height: 10px;
+  width: fit-content;
+  top: 50%;
+  left: 5%;
+  position: absolute;
+  color: black;
+  transform: translateY(-100%);
+  padding: 10px;
+  transition: all 3s ease-in-out 0;
+  background-color: var(--meta-color);
+  transition: all 0.2s ease;
+}
+form input[type="email"]:hover ~ .after,
+form input[type="email"]:focus ~ .after {
+  color: var(--primary-color);
+  top: 20%;
+  font-size: small;
+  transition: all 3s ease-in-out 0;
+  font-weight: 400;
+}
+form input[type="tel"] ~ .after {
+  height: 10px;
+  width: fit-content;
+  top: 50%;
+  left: 5%;
+  position: absolute;
+  color: black;
+  transform: translateY(-100%);
+  padding: 10px;
+  transition: all 3s ease-in-out 0;
+  background-color: var(--meta-color);
+  transition: all 0.2s ease;
+}
+form input[type="tel"]:hover ~ .after,
+form input[type="tel"]:focus ~ .after {
+  color: var(--primary-color);
+  top: 20%;
+  font-size: small;
+  transition: all 3s ease-in-out 0;
+  font-weight: 400;
+}
+form input[type="number"] ~ .after {
+  height: 10px;
+  width: fit-content;
+  top: 50%;
+  left: 5%;
+  position: absolute;
+  color: black;
+  transform: translateY(-100%);
+  padding: 10px;
+  transition: all 3s ease-in-out 0;
+  background-color: var(--meta-color);
+  transition: all 0.2s ease;
+}
+form input[type="number"]:hover ~ .after,
+form input[type="number"]:focus ~ .after {
+  color: var(--primary-color);
+  top: 20%;
+  font-size: small;
+  transition: all 3s ease-in-out 0;
+  font-weight: 400;
+}
+form input[type="password"] ~ .after {
+  height: 20px;
+  width: fit-content;
+  top: 50%;
+  left: 5%;
+  position: absolute;
+  color: black;
+  transform: translateY(-100%);
+  padding: 10px;
+  background-color: var(--meta-color);
+  transition: all 0.2s ease;
+}
+form input[type="password"]:hover ~ .after,
+form input[type="password"]:focus ~ .after {
+  color: var(--primary-color);
+  top: 20%;
+  font-size: small;
+  font-weight: 400;
+}
+.log_main .wrapper a button {
+  border-radius: 2px;
+}
+
+.log_main .wrapper .side {
+  left: 60%;
+  width: 40%;
+  height: 100%;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  transition: all 0.5s ease;
+  border-radius: 2px;
+  color: var(--meta-color);
+  text-align: center;
+}
+.nusu {
+  width: 50%;
+}

@@ -22,6 +22,7 @@ import Religion from "../Pages/form/MoreInfo/Religion";
 import "./App.css";
 import MoreInfo from "../Pages/form/MoreInfo";
 import MainForm from "../Pages/form/MainForm";
+import ForgotPass from "../Pages/form/ForgotPass";
 import Age from "../Pages/form/MoreInfo/Age";
 
 function App() {

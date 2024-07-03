@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "../universal/Button";
 import Facebook from "../../assets/104498_facebook_icon.svg";
 import Google from "../../assets/9034975_logo_google_icon.svg";
-
-let someData;
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -13,7 +10,6 @@ function Signup() {
     email: "",
     password: "",
   });
-  someData = { ...formData };
   const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,11 +21,11 @@ function Signup() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/form/moreinfo/name&birth");
+    console.log(formData);
+    navigate("/form/moreinfo/name&birth", { state: formData });
   };
   const handleKeyDown = (event) => {
     if (event) {
-      console.log(event.target.parentNode);
       event.target.parentNode.querySelector(".after").style.display = "none";
     }
   };
@@ -136,5 +132,5 @@ function Signup() {
     </div>
   );
 }
-export const getMyVariable = () => someData;
+
 export default Signup;

@@ -6,20 +6,17 @@ const ServicesApp = () => {
   const { formData, handleFormDataChange } = useOutletContext();
 
   const handleChange = (e) => {
-    const { name, type, checked, files, value } = e.target;
-    if (type === "checkbox") {
-      handleFormDataChange(name, checked);
-    } else if (type === "file") {
-      handleFormDataChange(name, files[0]);
-    } else {
-      handleFormDataChange(name, value);
-    }
+    const { name, checked } = e.target;
+    handleFormDataChange(name, checked);
   };
   const handleHover = (e) => {
     e.target.style.backgroundColor = "#3da33d";
   };
   const handleLeave = (e) => {
     e.target.style.backgroundColor = "#074302";
+  };
+  const handleClick = () => {
+    console.log(formData);
   };
   return (
     <>
@@ -50,7 +47,7 @@ const ServicesApp = () => {
               checked={formData.servicesNeeded.drugRehab}
               onChange={handleChange}
             />
-            <p>Drug Rehab</p>
+            Drug Rehab
             <span className="custom-checkbox"></span>
           </label>
           <br />
@@ -118,6 +115,7 @@ const ServicesApp = () => {
         color={"white"}
         p={".75rem 3rem"}
         margin={"1.5%"}
+        onClick={handleClick}
       />
     </>
   );

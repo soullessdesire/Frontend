@@ -28,6 +28,7 @@ function Button({
   m,
   className,
   hC,
+  data,
 }) {
   const navigate = useNavigate();
   const handleMouseEnter = (event) => {
@@ -48,7 +49,7 @@ function Button({
   };
   const handleClick = (event) => {
     event.preventDefault();
-    navigate(to);
+    navigate(to, { state: data && data });
   };
   return (
     <a

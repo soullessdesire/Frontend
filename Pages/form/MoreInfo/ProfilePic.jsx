@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
 const ProfilePic = () => {
-  const { formData, handleFormDataChange } = useOutletContext();
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    handleFormDataChange(name, files[0]);
+  const { file, setFile } = useOutletContext();
+  const handleChange = (e) => {
+    setFile(e.target.files[0]);
   };
   return (
     <>
-      <label htmlFor="profilePicture">
+      <label htmlFor="profilePic">
         <div className="input_wrapper">
           <input
             type="file"
             name="profilePic"
             id="profilePic"
-            onChange={handleFileChange}
-            value={formData.ProfilePic}
+            onChange={handleChange}
             style={{
               marginRight: "8rem",
               marginLeft: ".6rem",

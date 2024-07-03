@@ -1,18 +1,37 @@
-import React from "react";
-import { useOutletContext } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useOutletContext, useLocation, useNavigate } from "react-router-dom";
+
 import Button from "../../universal/Button";
 
 const NameBirth = () => {
   const { formData, handleFormDataChange } = useOutletContext();
-  const handleChange = (e) => {
-    const { name, type, checked, files, value } = e.target;
-    if (type === "checkbox") {
-      handleFormDataChange(name, checked);
-    } else if (type === "file") {
-      handleFormDataChange(name, files[0]);
-    } else {
-      handleFormDataChange(name, value);
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log({ ...formData });
+  useEffect(() => {
+    const someData = location.state ? { ...location.state } : null;
+    if (!someData) {
+      navigate("/form/main");
+      return;
     }
+
+    let hasChanged = false;
+
+    Object.keys(someData).forEach((key) => {
+      console.log({ ...formData }, someData);
+      handleFormDataChange(key, someData[key]);
+      console.log({ ...formData }, someData);
+      hasChanged = true;
+    });
+
+    if (!hasChanged) {
+      return;
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    handleFormDataChange(name, value);
   };
   const handleKeyDown = (event) => {
     if (event) {

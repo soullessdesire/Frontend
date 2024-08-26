@@ -24,16 +24,8 @@ function Signup() {
     setIsDisabled(!Object.values(formData).every((value) => value !== ""));
   }, [formData]);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const response = await axios.get(
-      `http://localhost:3000/api/users/username/${formData.username}`
-    );
-    const data = response.data;
-    if (data.length) {
-      createErrorNotification("This username is already taken");
-      throw new Error("Username is taken");
-    }
     axios
       .get(`http://localhost:3000/api/users/username/${formData.username}`)
       .then((response) => {
@@ -42,7 +34,7 @@ function Signup() {
           createErrorNotification("This username is already taken");
           throw new Error("Username is taken");
         } else {
-          navigate("/form/moreinfo/name&birth");
+          navigate("/form/moreinfo/name&birth", { state: formData });
         }
       })
       .catch((err) => {

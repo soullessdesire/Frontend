@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
@@ -10,29 +10,13 @@ const GenderStatus = () => {
       ref.current.push(el);
     }
   };
-  useEffect(() => {
-    const refCurrentCopy = [...ref.current];
-    const checkInputs = () => {
-      const allFilled = refCurrentCopy.every(
-        (input) => input.value.trim() !== ""
-      );
-      setIsDisabled(!allFilled);
-    };
-    checkInputs();
-    refCurrentCopy.forEach((input) =>
-      input.addEventListener("input", checkInputs)
-    );
-    return () => {
-      refCurrentCopy.forEach((input) =>
-        input.removeEventListener("input", checkInputs)
-      );
-    };
-  }, [isDisabled]);
-  const { formData, handleFormDataChange } = useOutletContext();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    handleFormDataChange(name, value);
-  };
+
+  const { formData, handleChange } = useOutletContext();
+  function checkInputs() {
+    const allFilled = ref.current.every((input) => input.value.trim() !== "");
+    console.log(allFilled);
+    setIsDisabled(!allFilled);
+  }
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;
 
@@ -49,12 +33,23 @@ const GenderStatus = () => {
             type="text"
             name="Gender"
             id="Gender"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.Gender}
             ref={addToRefs}
           />
-          <div className="after">Gender</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Gender
+            </p>
+          </div>
         </div>
       </label>
 
@@ -64,12 +59,23 @@ const GenderStatus = () => {
             type="text"
             name="Sexuality"
             id="Sexuality"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.Sexuality}
             ref={addToRefs}
           />
-          <div className="after">Sexuality</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Sexuality
+            </p>
+          </div>
         </div>
       </label>
       <label htmlFor="Status">
@@ -78,12 +84,23 @@ const GenderStatus = () => {
             type="text"
             name="Status"
             id="Status"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.Status}
             ref={addToRefs}
           />
-          <div className="after">Status</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Status
+            </p>
+          </div>
         </div>
       </label>
       <Button

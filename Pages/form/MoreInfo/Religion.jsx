@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Button from "../../universal/Button";
 import { useOutletContext } from "react-router-dom";
 import Select from "../../universal/Select";
 
 const Religion = () => {
-  const { formData, handleFormDataChange } = useOutletContext();
+  const { formData, handleChange } = useOutletContext();
   const [isDisabled, setIsDisabled] = useState(true);
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -12,28 +12,9 @@ const Religion = () => {
       ref.current.push(el);
     }
   };
-  useEffect(() => {
-    const refCurrentCopy = [...ref.current];
-    const checkInputs = () => {
-      const allFilled = refCurrentCopy.every(
-        (input) => input.value.trim() !== ""
-      );
-      setIsDisabled(!allFilled);
-    };
-    checkInputs();
-    refCurrentCopy.forEach((input) =>
-      input.addEventListener("input", checkInputs)
-    );
-    return () => {
-      refCurrentCopy.forEach((input) =>
-        input.removeEventListener("input", checkInputs)
-      );
-    };
-  }, [formData, isDisabled]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    handleFormDataChange(name, value);
+  const checkInputs = () => {
+    const allFilled = ref.current.every((input) => input.value.trim() !== "");
+    setIsDisabled(!allFilled);
   };
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;
@@ -52,7 +33,10 @@ const Religion = () => {
             type="text"
             name="Religion"
             id="Religion"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.Religion}
             ref={addToRefs}

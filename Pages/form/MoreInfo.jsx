@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Logo from "../../assets/Logo";
@@ -16,9 +16,7 @@ const MoreInfo = () => {
     Gender: "",
     Sexuality: "",
     Status: "",
-    age: "",
     Religion: "",
-    Tribe: "",
     dateOfBirth: "",
     phoneNumber: "",
     closestKinName: "",
@@ -29,10 +27,14 @@ const MoreInfo = () => {
       physicalTherapy: false,
     },
   });
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    handleFormDataChange(name, value);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event);
+    console.log(formData);
     const Data = new FormData();
     Object.keys(formData).forEach((key) => {
       if (key !== "servicesNeeded") {
@@ -66,34 +68,38 @@ const MoreInfo = () => {
         console.error("Error submitting form:", error.response.data.message);
       });
   };
-  const handleFormDataChange = (name, value) => {
-    if (typeof value === "object") {
-      console.log(value);
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        servicesNeeded: { ...prevFormData.servicesNeeded },
-        [name]: { ...value },
-      }));
-      return;
-    }
-    if (Object.keys(formData).includes(name)) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        servicesNeeded: {
-          ...prevFormData.servicesNeeded,
-        },
-        [name]: value,
-      }));
-    } else {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        servicesNeeded: {
-          ...prevFormData.servicesNeeded,
+  const handleFormDataChange = useCallback(
+    (name, value) => {
+      if (typeof value === "object") {
+        console.log(value);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          servicesNeeded: { ...prevFormData.servicesNeeded },
+          [name]: { ...value },
+        }));
+        return;
+      }
+      if (Object.keys(formData).includes(name)) {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          servicesNeeded: {
+            ...prevFormData.servicesNeeded,
+          },
           [name]: value,
-        },
-      }));
-    }
-  };
+        }));
+      } else {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          servicesNeeded: {
+            ...prevFormData.servicesNeeded,
+            [name]: value,
+          },
+        }));
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return (
     <div className="wrapper" style={{}}>
@@ -148,7 +154,15 @@ const MoreInfo = () => {
             width: "80%",
           }}
         >
-          <Outlet context={{ formData, handleFormDataChange, file, setFile }} />
+          <Outlet
+            context={{
+              formData,
+              handleFormDataChange,
+              file,
+              setFile,
+              handleChange,
+            }}
+          />
         </form>
       </div>
     </div>

@@ -7,7 +7,7 @@ const NameBirth = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-  const { formData, handleFormDataChange } = useOutletContext();
+  const { formData, handleFormDataChange, handleChange } = useOutletContext();
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
@@ -22,20 +22,17 @@ const NameBirth = () => {
     }
 
     Object.keys(someData).forEach((key) => {
-      console.log(key);
+      console.log(key, someData[key]);
       handleFormDataChange(key, someData[key]);
     });
-    console.log(formData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const handleChange = (e) => {
+  function checkInputs() {
     const allFilled = ref.current.every((input) => input.value.trim() !== "");
     console.log(allFilled);
     setIsDisabled(!allFilled);
-    const { name, value } = e.target;
-    console.log(name, value);
-    handleFormDataChange(name, value);
-  };
+  }
+
   const handleKeyDown = (event) => {
     if (event.target.getAttribute("id") === "dateOfBirth") return;
     const after = event.target.parentNode.querySelector(".after").style;
@@ -66,7 +63,10 @@ const NameBirth = () => {
               type="text"
               name="firstName"
               id="firstName"
-              onChange={handleChange}
+              onChange={(event) => {
+                checkInputs();
+                handleChange(event);
+              }}
               onKeyDown={handleKeyDown}
               value={formData.firstName}
               style={{
@@ -94,7 +94,10 @@ const NameBirth = () => {
               type="text"
               name="lastName"
               id="lastName"
-              onChange={handleChange}
+              onChange={(event) => {
+                checkInputs();
+                handleChange(event);
+              }}
               onKeyDown={handleKeyDown}
               value={formData.lastName}
               style={{
@@ -125,7 +128,10 @@ const NameBirth = () => {
             type="date"
             name="dateOfBirth"
             id="dateOfBirth"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.dateOfBirth}
             ref={addToRefs}

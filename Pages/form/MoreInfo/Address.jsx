@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
 const Address = () => {
-  const { formData, handleFormDataChange } = useOutletContext();
+  const { formData, handleChange } = useOutletContext();
   const [isDisabled, setIsDisabled] = useState(true);
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -11,24 +11,11 @@ const Address = () => {
       ref.current.push(el);
     }
   };
-  useEffect(() => {
-    const refCurrentCopy = [...ref.current];
-    const checkInputs = () => {
-      const allFilled = refCurrentCopy.every(
-        (input) => input.value.trim() !== ""
-      );
-      setIsDisabled(!allFilled);
-    };
-    checkInputs();
-    refCurrentCopy.forEach((input) =>
-      input.addEventListener("input", checkInputs)
-    );
-    return () => {
-      refCurrentCopy.forEach((input) =>
-        input.removeEventListener("input", checkInputs)
-      );
-    };
-  }, [isDisabled, formData]);
+  function checkInputs() {
+    const allFilled = ref.current.every((input) => input.value.trim() !== "");
+    console.log(allFilled);
+    setIsDisabled(!allFilled);
+  }
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;
 
@@ -36,10 +23,6 @@ const Address = () => {
     after.fontSize = "12px";
     after.fontWeight = "400";
     after.top = "30%";
-  };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    handleFormDataChange(name, value);
   };
   return (
     <>
@@ -49,7 +32,10 @@ const Address = () => {
             type="text"
             name="address"
             id="address"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.address}
             ref={addToRefs}
@@ -63,7 +49,10 @@ const Address = () => {
             type="text"
             name="phoneNumber"
             id="phoneNumber"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.phoneNumber}
             ref={addToRefs}

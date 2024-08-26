@@ -26,6 +26,7 @@ const User = () => {
         .post("http://localhost:3000/auth", { token })
         .then((response) => {
           setIsAuthenticated(response.data.level);
+          console.log(response.data);
           setUserData(() => ({ ...response.data.userData }));
         })
         .catch((e) => {

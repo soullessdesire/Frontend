@@ -44,10 +44,10 @@ const UserProfile = () => {
           <div className="profile">
             {userData.Image.path ? (
               <img
-                src={userData.Image.path
-                  .concat("..\\")
+                src={"..\\"
+                  .concat(userData.Image.path)
                   .replace(/\\{2,2}/g, "/")
-                  .replace("frontend/", "")}
+                  .replace("frontend\\", "")}
                 width={"85%"}
                 style={{
                   aspectRatio: "4/3",
@@ -209,19 +209,23 @@ const UserProfile = () => {
               <br />
               <p>
                 Phone{":   "}
-                <span className="bgCc">{"01114673"}</span>
+                <span className="bgCc">
+                  {userData.personalDetails.phoneNumber}
+                </span>
               </p>
               <br />
               <br />
               <p>
                 Address{":   "}
-                <span className="bgCc">{"2029-00700"}</span>
+                <span className="bgCc">
+                  {userData.personalDetails.phoneNumber}
+                </span>
               </p>
               <br />
               <br />
               <p>
                 Email{":   "}
-                <span className="bgCc">{"fuckyou@gmail.com"}</span>
+                <span className="bgCc">{userData.email}</span>
               </p>
               <br />
               <br />
@@ -243,14 +247,16 @@ const UserProfile = () => {
               <br />
               <br />
               <p>
-                birthDay {":   "}
-                <span className="bgCc">{"20-10-2000"}</span>
+                BirthDay {":   "}
+                <span className="bgCc">
+                  {userData.personalDetails.dateOfBirth}
+                </span>
               </p>
               <br />
               <br />
               <p>
                 Gender{":   "}
-                <span className="bgCc">{"Male"}</span>
+                <span className="bgCc">{userData.personalDetails.Gender}</span>
               </p>
               <br />
               <br />

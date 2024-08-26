@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
 const Kin = () => {
-  const { formData, handleFormDataChange } = useOutletContext();
+  const { formData, handleChange } = useOutletContext();
   const [isDisabled, setIsDisabled] = useState(true);
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -11,28 +11,11 @@ const Kin = () => {
       ref.current.push(el);
     }
   };
-  useEffect(() => {
-    const refCurrentCopy = [...ref.current];
-    const checkInputs = () => {
-      const allFilled = refCurrentCopy.every(
-        (input) => input.value.trim() !== ""
-      );
-      setIsDisabled(!allFilled);
-    };
-    checkInputs();
-    refCurrentCopy.forEach((input) =>
-      input.addEventListener("input", checkInputs)
-    );
-    return () => {
-      refCurrentCopy.forEach((input) =>
-        input.removeEventListener("input", checkInputs)
-      );
-    };
-  }, [isDisabled, formData]);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    handleFormDataChange(name, value);
-  };
+  function checkInputs() {
+    const allFilled = ref.current.every((input) => input.value.trim() !== "");
+    console.log(allFilled);
+    setIsDisabled(!allFilled);
+  }
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;
 
@@ -50,12 +33,23 @@ const Kin = () => {
             type="text"
             name="closestKinName"
             id="closestKinName"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.closestKinName}
             ref={addToRefs}
           />
-          <div className="after">Closest Kin Name</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Closest Kin Name
+            </p>
+          </div>
         </div>
       </label>
       <label htmlFor="closestKinPhoneNumber">
@@ -64,12 +58,23 @@ const Kin = () => {
             type="tel"
             name="closestKinPhoneNumber"
             id="closestKinPhoneNumber"
-            onChange={handleChange}
+            onChange={(event) => {
+              checkInputs();
+              handleChange(event);
+            }}
             onKeyDown={handleKeyDown}
             value={formData.closestKinPhoneNumber}
             ref={addToRefs}
           />
-          <div className="after">Closest Kin Phone Number</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Closest Kin No
+            </p>
+          </div>
         </div>
       </label>
       <Button

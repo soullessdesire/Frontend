@@ -1,14 +1,10 @@
-import React from "react";
-import Navbar from "../universal/Navbar";
 import Footer from "../universal/Footer";
-import "./public.css";
 
 function About() {
   return (
     <>
-      <Navbar ul={true} Login={true} />
       <br />
-      <main>
+      <main className="a_main">
         <div>
           <div
             style={{
@@ -17,16 +13,28 @@ function About() {
               height: "fit-content",
             }}
           >
-            <h1 style={{ textAlign: "center", marginBottom: "5rem" }}>
+            <h1
+              style={{
+                textAlign: "center",
+                marginBottom: "5rem",
+                fontFamily: "Arsenal SC",
+              }}
+            >
               About Us
             </h1>
           </div>
           <div className="margin_b" style={{ display: "flex" }}>
             <div className="about_divs">
-              <h1 style={{ alignSelf: "flex-start", marginBottom: "2rem" }}>
+              <h1
+                style={{
+                  alignSelf: "flex-start",
+                  marginBottom: "2rem",
+                  fontFamily: "Arsenal SC",
+                }}
+              >
                 Our Vision
               </h1>
-              <p>
+              <p style={{ fontFamily: "Inria Sans", fontSize: "18px" }}>
                 Our vision is to become the leading rehabilitation center, known
                 for transforming lives through innovative, comprehensive, and
                 compassionate care. We aim to empower individuals to achieve
@@ -43,8 +51,10 @@ function About() {
           <div style={{ display: "flex" }} className="margin_b">
             <div className="app_img about_divs img"></div>
             <div className="about_divs margin-left">
-              <h1 className="margin_b">Our Approach</h1>
-              <p>
+              <h1 className="margin_b" style={{ fontFamily: "Arsenal SC" }}>
+                Our Approach
+              </h1>
+              <p style={{ fontFamily: "Inria Sans", fontSize: "18px" }}>
                 Our process begins with a comprehensive assessment to understand
                 each patient’s unique needs, followed by developing
                 individualized treatment plans. We integrate physical therapy,
@@ -66,8 +76,10 @@ function About() {
             className="margin_b"
           >
             <div className="about_divs">
-              <h1 className="margin_b">Our Process</h1>
-              <p>
+              <h1 className="margin_b" style={{ fontFamily: "Arsenal SC" }}>
+                Our Process
+              </h1>
+              <p style={{ fontFamily: "Inria Sans", fontSize: "18px" }}>
                 Our process begins with a comprehensive assessment to understand
                 each patient’s unique needs, followed by developing
                 individualized treatment plans. We integrate physical therapy,

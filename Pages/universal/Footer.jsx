@@ -1,7 +1,7 @@
-import React from "react";
 import { Twitter } from "@mui/icons-material";
 import { Facebook } from "@mui/icons-material";
 import { Instagram } from "@mui/icons-material";
+import PropTypes from "prop-types";
 import { LinkedIn } from "@mui/icons-material";
 import Secure from "../../assets/Secure";
 
@@ -11,6 +11,7 @@ const Footer = ({ color, bg }) => {
       style={{
         color: color || "#3da33d",
         backgroundColor: bg || "white",
+        padding: "2rem 2rem 0 2rem",
       }}
     >
       <div className="muskerters">
@@ -172,4 +173,8 @@ const Footer = ({ color, bg }) => {
   );
 };
 
+Footer.propTypes = {
+  color: PropTypes.string,
+  bg: PropTypes.string,
+};
 export default Footer;

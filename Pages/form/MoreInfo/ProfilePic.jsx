@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
 const ProfilePic = () => {
-  const { file, setFile } = useOutletContext();
+  const [isDisabled, setIsDisabled] = useState(true);
+  const { setFile } = useOutletContext();
   const handleChange = (e) => {
     setFile(e.target.files[0]);
+    setIsDisabled(false);
   };
   return (
     <>
@@ -24,14 +26,22 @@ const ProfilePic = () => {
         </div>
       </label>
       <Button
+        style={{
+          width: "90px",
+          height: "40px",
+          borderRadius: "4px",
+          background: "#3da33d",
+          color: "white",
+          border: "none",
+          backgroundColor: `${
+            isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+          }`,
+        }}
         to={"/form/moreinfo/servicesapp"}
-        hC={true}
-        text={"Next"}
-        bg={"#3da33d"}
-        color={"white"}
-        p={".75rem 3rem"}
-        margin={"1.5%"}
-      />
+        disabled={isDisabled}
+      >
+        Next
+      </Button>
     </>
   );
 };

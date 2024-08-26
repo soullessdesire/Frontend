@@ -33,7 +33,24 @@ const DonutChart = () => {
   };
 
   const options = {
-    cutout: "70%", // This makes the chart a donut by specifying the cutout percentage
+    cutout: "70%",
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: false,
+      },
+    },
   };
 
   return <Doughnut data={data} options={options} />;

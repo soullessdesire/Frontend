@@ -1,105 +1,53 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Button({
-  text,
+  children,
+  style,
   type,
   to,
-  marginTop,
-  margin,
-  paddingLeft,
-  width,
-  height,
-  imgurl,
-  imgw,
-  imgh,
-  bg,
-  onClick,
-  bR,
-  color,
-  b,
-  videourl,
-  videoh,
-  videow,
-  p,
-  bb,
-  fS,
-  jC,
-  m,
-  className,
-  hC,
   data,
+  className,
+  disabled,
+  onClick,
 }) {
   const navigate = useNavigate();
-  const handleMouseEnter = (event) => {
-    if (event) {
-      event.target.setAttribute(autoplay, true);
-      event.target.play();
+
+  // Handler for button click
+  const handleClick = (event) => {
+    if (disabled) return;
+
+    if (onClick) {
+      onClick(event);
     }
-  };
-  const handleMouseLeave = (event) => {
-    if (event) {
-      event.target.removeAttribute(autoplay);
-      event.target.currentTime = 0;
+
+    if (to) {
+      navigate(to, { state: data });
     }
   };
 
-  const borderHandler = () => {
-    return bb ? bb : b ? b : "none";
-  };
-  const handleClick = (event) => {
-    event.preventDefault();
-    navigate(to, { state: data && data });
-  };
   return (
-    <a
-      href={to ? to : null}
-      style={{
-        marginTop: marginTop,
-        margin: margin,
-        paddingLeft: paddingLeft,
-        width: "fit-content",
-        height: "fit-content",
-      }}
-      onClick={hC && handleClick}
+    <button
+      type={type || "button"}
+      onClick={handleClick}
+      style={style}
+      className={className}
+      disabled={disabled}
     >
-      <button
-        type={type || "button"}
-        onClick={onClick}
-        style={{
-          width: width || "fit-content",
-          height: height,
-          padding: p,
-          borderRadius: bR,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: jC || "space-around",
-          backgroundColor: bg || "white",
-          border: b || "none",
-          borderBottom: `${borderHandler()}`,
-          color: color || "white",
-        }}
-        className={className || ""}
-      >
-        {videourl && (
-          <video
-            src={videourl}
-            height={videoh}
-            width={videow}
-            onMouseLeave={handleMouseLeave}
-            onMouseEnter={handleMouseEnter}
-          ></video>
-        )}
-        {imgurl && (
-          <img
-            src={imgurl}
-            style={{ height: imgh, width: imgw, margin: m || "" }}
-          ></img>
-        )}
-        <p style={{ fontSize: fS }}>{text && text}</p>
-      </button>
-    </a>
+      {children}
+    </button>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.node,
+  style: PropTypes.object,
+  type: PropTypes.string,
+  to: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  data: PropTypes.object,
+  onClick: PropTypes.func,
+};
 
 export default Button;

@@ -1,9 +1,34 @@
-import React from "react";
+import { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
 const ServicesApp = () => {
   const { formData, handleFormDataChange } = useOutletContext();
+  const [isDisabled, setIsDisabled] = useState(true);
+  const ref = useRef([]);
+  const addToRefs = (el) => {
+    if (el && !ref.current.includes(el)) {
+      ref.current.push(el);
+    }
+  };
+  useEffect(() => {
+    const refCurrentCopy = [...ref.current];
+    const checkInputs = () => {
+      const allFilled = refCurrentCopy.every(
+        (input) => input.value.trim() !== ""
+      );
+      setIsDisabled(!allFilled);
+    };
+    checkInputs();
+    refCurrentCopy.forEach((input) =>
+      input.addEventListener("input", checkInputs)
+    );
+    return () => {
+      refCurrentCopy.forEach((input) =>
+        input.removeEventListener("input", checkInputs)
+      );
+    };
+  }, [isDisabled, formData]);
 
   const handleChange = (e) => {
     const { name, checked } = e.target;
@@ -15,20 +40,32 @@ const ServicesApp = () => {
   const handleLeave = (e) => {
     e.target.style.backgroundColor = "#074302";
   };
-  const handleClick = () => {
-    console.log(formData);
-  };
   return (
     <>
-      <div style={{ marginBottom: "10px", width: "100%" }}>
-        <label>Services Needed:</label>
-        <div style={{ marginLeft: "10px" }}>
+      <div
+        style={{
+          marginBottom: "10px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <label
+          style={{
+            fontSize: "18px",
+            color: "var(--primary-color)",
+          }}
+        >
+          Services Needed
+        </label>
+        <div>
           <label
             className="custom-checkbox-container"
             style={{
-              backgroundColor: " #074302",
+              backgroundColor: "#074302",
               color: "white",
-              padding: "1rem 3rem",
+              padding: ".75rem 2rem",
               display: "flex",
               justifyContent: "flex-start",
               alignItems: "center",
@@ -46,6 +83,7 @@ const ServicesApp = () => {
               name="drugRehab"
               checked={formData.servicesNeeded.drugRehab}
               onChange={handleChange}
+              ref={addToRefs}
             />
             Drug Rehab
             <span className="custom-checkbox"></span>
@@ -56,7 +94,7 @@ const ServicesApp = () => {
             style={{
               backgroundColor: " #074302",
               color: "white",
-              padding: "1rem 3rem",
+              padding: ".75rem 2rem",
               display: "flex",
               justifyContent: "flex-start",
               width: "270px",
@@ -74,6 +112,7 @@ const ServicesApp = () => {
               name="coupleTherapy"
               checked={formData.servicesNeeded.coupleTherapy}
               onChange={handleChange}
+              ref={addToRefs}
             />
             Couple Therapy
             <span className="custom-checkbox"></span>
@@ -84,7 +123,7 @@ const ServicesApp = () => {
             style={{
               backgroundColor: " #074302",
               color: "white",
-              padding: "1rem 3rem",
+              padding: ".75rem 2rem",
               display: "flex",
               justifyContent: "flex-start",
               width: "270px",
@@ -102,6 +141,7 @@ const ServicesApp = () => {
               name="physicalTherapy"
               checked={formData.servicesNeeded.physicalTherapy}
               onChange={handleChange}
+              ref={addToRefs}
             />
             Physical Therapy
             <span className="custom-checkbox"></span>
@@ -109,14 +149,22 @@ const ServicesApp = () => {
         </div>
       </div>
       <Button
-        text={"Submit"}
+        style={{
+          width: "90px",
+          height: "40px",
+          borderRadius: "4px",
+          background: "#3da33d",
+          color: "white",
+          border: "none",
+          backgroundColor: `${
+            isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+          }`,
+        }}
         type={"submit"}
-        bg={" #3da33d"}
-        color={"white"}
-        p={".75rem 3rem"}
-        margin={"1.5%"}
-        onClick={handleClick}
-      />
+        disabled={isDisabled}
+      >
+        Submit
+      </Button>
     </>
   );
 };

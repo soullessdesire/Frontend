@@ -1,16 +1,42 @@
-import React from "react";
-import "./User.css";
+import { useState } from "react";
+import Modal from "../../utils/Modal";
+import Table from "./Table";
+import Button from "../universal/Button";
 
 const Programs = () => {
+  const [show, setShow] = useState(false);
   return (
     <div
-      className="table"
       style={{
-        overflowY: "scroll",
-        display: "flex",
-        height: "calc(100vh - 90px)",
+        padding: "1rem",
+        flexGrow: "1",
       }}
     >
+      <h2
+        style={{
+          fontWeight: "500",
+          fontSize: "32px",
+          fontFamily: "Inria Sans",
+        }}
+      >
+        Programs
+      </h2>
+      <br />
+      <p>
+        This is were you will find your registered programs and a list for
+        applying for any new programs
+      </p>
+      <br />
+      <h4
+        style={{
+          fontWeight: "500",
+          fontSize: "24px",
+          fontFamily: "Inria Sans",
+        }}
+      >
+        Registered Programs
+      </h4>
+      <br />
       <table>
         <thead>
           <tr>
@@ -23,119 +49,57 @@ const Programs = () => {
             <th>Price</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>DR001</td>
-            <td>Drug Detox</td>
-            <td>Initial detox program</td>
-            <td>Dr. Alice Brown</td>
-            <td>7 days</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>DR002</td>
-            <td>Inpatient Rehab</td>
-            <td>Comprehensive drug rehab</td>
-            <td>Dr. Bob Green</td>
-            <td>30 days</td>
-            <td>$2000</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>DR003</td>
-            <td>Outpatient Rehab</td>
-            <td>Drug rehab with daily sessions</td>
-            <td>Dr. Carol White</td>
-            <td>60 days</td>
-            <td>$1500</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>CT001</td>
-            <td>Couples Counseling</td>
-            <td>Basic therapy for couples</td>
-            <td>Therapist David Black</td>
-            <td>1 hour/session</td>
-            <td>$100/session</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>CT002</td>
-            <td>Intensive Couples Therapy</td>
-            <td>Weekend therapy retreat</td>
-            <td>Therapist Emma Blue</td>
-            <td>3 days</td>
-            <td>$800</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>CT003</td>
-            <td>Communication Workshop</td>
-            <td>Improving communication skills</td>
-            <td>Therapist Frank Yellow</td>
-            <td>2 hours</td>
-            <td>$150</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT001</td>
-            <td>Physical Therapy Initial Consultation</td>
-            <td>Assessment and plan</td>
-            <td>Dr. Grace Gray</td>
-            <td>1 hour</td>
-            <td>$120</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT002</td>
-            <td>Post-Surgery Rehab</td>
-            <td>Rehabilitation after surgery</td>
-            <td>Dr. Henry Orange</td>
-            <td>4 weeks</td>
-            <td>$1000</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT003</td>
-            <td>Sports Injury Therapy</td>
-            <td>Therapy for sports injuries</td>
-            <td>Dr. Irene Red</td>
-            <td>6 weeks</td>
-            <td>$1200</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT004</td>
-            <td>Chronic Pain Management</td>
-            <td>Therapy for chronic pain</td>
-            <td>Dr. Jack Purple</td>
-            <td>8 weeks</td>
-            <td>$1600</td>
-          </tr>
-        </tbody>
       </table>
+      <br />
+      <h4
+        style={{
+          fontWeight: "500",
+          fontSize: "24px",
+          fontFamily: "Inria Sans",
+        }}
+      >
+        Completed Programs
+      </h4>
+      <br />
+      <table>
+        <thead>
+          <tr>
+            <th>Checkbox</th>
+            <th>ProgramID</th>
+            <th>Program</th>
+            <th>Description</th>
+            <th>Therapist/Conductor</th>
+            <th>Duration</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+      </table>
+      <br />
+      <div className="program-list">
+        <Modal
+          show={show}
+          closeModal={() => setShow((prev) => !prev)}
+          window={true}
+        >
+          <Table />
+        </Modal>
+
+        <Button
+          type="button"
+          onClick={() => setShow((prev) => !prev)}
+          style={{
+            cursor: "pointer",
+            background: "#3da33d",
+            color: "white",
+            padding: "8px 12px",
+            border: "none",
+            marginRight: "1rem",
+            borderRadius: "2px",
+          }}
+        >
+          Register New Programs
+        </Button>
+      </div>
     </div>
   );
 };

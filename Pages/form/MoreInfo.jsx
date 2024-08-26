@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Outlet, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import Logo from "../../assets/Logo";
 
 const MoreInfo = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const MoreInfo = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(event);
     const Data = new FormData();
     Object.keys(formData).forEach((key) => {
       if (key !== "servicesNeeded") {
@@ -41,15 +43,7 @@ const MoreInfo = () => {
       Data.append(`servicesNeeded[${key}]`, formData.servicesNeeded[key]);
     });
 
-    // Append the file
     Data.append("profilePic", file);
-    console.log(Data.entries());
-    const log = (data) => {
-      for (let [key, value] of data.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-    };
-    log(Data);
     axios
       .post("http://localhost:3000/api/users/username", Data, {
         headers: {
@@ -83,11 +77,6 @@ const MoreInfo = () => {
       return;
     }
     if (Object.keys(formData).includes(name)) {
-      // console.log(
-      //   name,
-      //   Object.keys(formData).includes(name),
-      //   Object.keys(formData)
-      // );
       setFormData((prevFormData) => ({
         ...prevFormData,
         servicesNeeded: {
@@ -107,13 +96,43 @@ const MoreInfo = () => {
   };
 
   return (
-    <div className="wrapper">
-      <div className="nusu">
-        <span>
-          Serene.
-          <br />
-        </span>
-        <h2>Rehab Services Form</h2>
+    <div className="wrapper" style={{}}>
+      <div
+        className="nusu"
+        style={{
+          background: "var(--primary-color)",
+        }}
+      >
+        <div>
+          <Link
+            to={"/home"}
+            style={{
+              color: "#3da33d",
+              fontSize: "xx-large",
+              display: "flex",
+            }}
+          >
+            <span style={{ width: "50px" }}>
+              <Logo color={"white"} />
+            </span>
+            <p
+              style={{
+                fontFamily: "Caramel",
+                fontSize: "50px",
+                color: "var(--meta-color)",
+              }}
+            >
+              Serene
+            </p>
+          </Link>
+        </div>
+        <h2
+          style={{
+            color: "white",
+          }}
+        >
+          Rehab Services Form
+        </h2>
         <p></p>
       </div>
       <div className="nusu">
@@ -123,6 +142,10 @@ const MoreInfo = () => {
           style={{
             display: "flex",
             flexWrap: "wrap",
+            flexDirection: "column",
+            height: "250px",
+            justifyContent: "space-between",
+            width: "80%",
           }}
         >
           <Outlet context={{ formData, handleFormDataChange, file, setFile }} />

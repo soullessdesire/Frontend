@@ -1,9 +1,7 @@
-import React from "react";
 import { Twitter } from "@mui/icons-material";
 import { Facebook } from "@mui/icons-material";
 import { Instagram } from "@mui/icons-material";
 import { LinkedIn } from "@mui/icons-material";
-import Button from "../universal/Button";
 
 const Contacts = () => {
   return (
@@ -33,8 +31,7 @@ const Contacts = () => {
             <div className="after"></div>
           </div>
           <textarea name="" id=""></textarea>
-          <input type="submit" value="" />
-          <Button />
+          <input type="submit" value="Submit" />
         </form>
       </div>
     </>

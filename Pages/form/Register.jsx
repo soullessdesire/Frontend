@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../universal/Button";
-import Facebook from "../../assets/104498_facebook_icon.svg";
-import Google from "../../assets/9034975_logo_google_icon.svg";
+import OtherLogins from "../universal/OtherLogins";
+import axios from "axios";
+import { createErrorNotification } from "../universal/createErrorNotification";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ function Signup() {
     email: "",
     password: "",
   });
+  const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,21 +20,49 @@ function Signup() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    setIsDisabled(!Object.values(formData).every((value) => value !== ""));
+  }, [formData]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
-    navigate("/form/moreinfo/name&birth", { state: formData });
+    const response = await axios.get(
+      `http://localhost:3000/api/users/username/${formData.username}`
+    );
+    const data = response.data;
+    if (data.length) {
+      createErrorNotification("This username is already taken");
+      throw new Error("Username is taken");
+    }
+    axios
+      .get(`http://localhost:3000/api/users/username/${formData.username}`)
+      .then((response) => {
+        const data = response.data;
+        if (data.length) {
+          createErrorNotification("This username is already taken");
+          throw new Error("Username is taken");
+        } else {
+          navigate("/form/moreinfo/name&birth");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const handleKeyDown = (event) => {
-    if (event) {
-      event.target.parentNode.querySelector(".after").style.display = "none";
-    }
+    const after = event.target.parentNode.querySelector(".after").style;
+
+    after.color = "var(--secondary-color)";
+    after.fontSize = "12px";
+    after.fontWeight = "400";
+    after.top = "28%";
+    after.left = ".2%";
   };
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: "column",
         width: "100%",
@@ -41,31 +70,7 @@ function Signup() {
       }}
     >
       <h2>Create account</h2>
-      <div
-        className="links"
-        style={{
-          width: "35%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        <Button
-          bR={"50%"}
-          imgurl={Facebook}
-          bg={"rgba(0,0,0,0)"}
-          b={"#3da33d 1.5px solid"}
-          p={"5px"}
-        />
-        <Button
-          bR={"50%"}
-          imgurl={Google}
-          bg={"rgba(0,0,0,0)"}
-          b={"#3da33d 1.5px solid"}
-          p={"5px"}
-          to={"http://localhost:3000/auth/google"}
-        />
-      </div>
+      <OtherLogins />
       <p>or use email for registration</p>
       <form
         onSubmit={handleSubmit}
@@ -88,7 +93,15 @@ function Signup() {
               required
               onKeyDown={handleKeyDown}
             />
-            <div className="after">Username</div>
+            <div className="after">
+              <p
+                style={{
+                  backgroundColor: "var(--meta-color)",
+                }}
+              >
+                Username
+              </p>
+            </div>
           </div>
         </div>
         <div>
@@ -103,10 +116,22 @@ function Signup() {
               required
               onKeyDown={handleKeyDown}
             />
-            <div className="after">Email</div>
+            <div className="after">
+              <p
+                style={{
+                  backgroundColor: "var(--meta-color)",
+                }}
+              >
+                Email
+              </p>
+            </div>
           </div>
         </div>
-        <div>
+        <div
+          style={{
+            marginBottom: "20px",
+          }}
+        >
           <label htmlFor="password"></label>
           <div className="input_wrapper">
             <input
@@ -117,17 +142,35 @@ function Signup() {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
-            <div className="after">Password</div>
+            <div className="after">
+              <p
+                style={{
+                  backgroundColor: "var(--meta-color)",
+                }}
+              >
+                Password
+              </p>
+            </div>
           </div>
         </div>
-        <Button
+        <button
           type="submit"
-          text={"Submit"}
-          width={"90px"}
-          height={"40px"}
-          bR={"20px"}
-          bg={"#3da33d"}
-        ></Button>
+          style={{
+            width: "90px",
+            height: "40px",
+            borderRadius: "20px",
+            background: "#3da33d",
+            color: "white",
+            border: "none",
+            backgroundColor: `${
+              isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+            }`,
+          }}
+          disabled={isDisabled}
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

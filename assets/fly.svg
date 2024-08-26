@@ -1,0 +1,30 @@
+<svg viewBox="0 0 124.66 168.19" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body of the bird -->
+  <path id="body" d="M...Z" fill="red" />
+  
+  <!-- Left wing -->
+  <path id="leftWing" d="M...Z" fill="red">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 60,80"
+      to="30 60,80"
+      dur="0.5s"
+      repeatCount="indefinite"
+      begin="0s"
+      direction="alternate" />
+  </path>
+  
+  <!-- Right wing -->
+  <path id="rightWing" d="M...Z" fill="red">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 64,80"
+      to="-30 64,80"
+      dur="0.5s"
+      repeatCount="indefinite"
+      begin="0s"
+      direction="alternate" />
+  </path>
+</svg>

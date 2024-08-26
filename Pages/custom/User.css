@@ -1,7 +1,8 @@
 .profile {
-  height: 250px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 350px;
 }
 .profileImage {
   height: 200px;
@@ -29,55 +30,96 @@
   position: relative;
 }
 .expand {
-  width: 6%;
-  height: calc(100vh - 90px);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  width: 4%;
+  height: calc(100vh - var(--navbar-height));
   position: sticky;
   top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: width 20ms linear;
+  transition: width 25ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #f9f9f9;
 }
 .expand:hover {
   width: 12%;
+  transition: width 30ms linear;
 }
-.the_four {
-  width: 240px;
-  height: 170px;
-  background: black;
-  border: 1px red solid;
-  margin-left: 2rem;
-}
-.the_three {
+.bar {
   width: 300px;
   height: 170px;
+}
+.pie {
+  width: 225px;
+  height: 300px;
+}
+.donut {
+  width: 225px;
+  height: 300px;
+}
+.the_three {
   margin-top: 1rem;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
-.table {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  flex-direction: column;
 }
-
+.overlay {
+  border: none;
+  overflow: hidden;
+}
+.sub_clo {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--primary-color);
+}
+.modal_clo {
+  color: var(--meta-color);
+  background-color: var(--primary-color);
+  border: none;
+  font-size: x-large;
+  padding: 0.3rem 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+}
+.modal_sub {
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--meta-color);
+  padding: 0.5rem;
+}
+.content {
+  width: 100%;
+  background-color: var(--primary-color);
+}
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 10px 0;
+  background-color: var(--meta-color);
 }
 
 thead {
-  background-color: #f1f1f1;
+  background-color: var(--primary-color);
+  color: var(--meta-color);
 }
 
 th {
   padding: 10px;
   text-align: left;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid var(--primary-color);
 }
 
 tbody tr {
@@ -89,12 +131,9 @@ td {
   text-align: left;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
 tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: var(--primary-color);
+  color: var(--meta-color);
 }
 
 input[type="checkbox"] {

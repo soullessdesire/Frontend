@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Register from "./Register";
 import Login from "./Login";
-import Button from "../universal/Button";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/Logo";
 
 const MainForm = () => {
   const ref = useRef();
@@ -35,40 +36,121 @@ const MainForm = () => {
       <div className="side" ref={ref}>
         {form ? (
           <>
-            <h1 style={{ padding: "10px" }}>Hello, Friend</h1>
-            <p style={{ padding: "10px" }}>
+            <div className="side_div">
+              <Link
+                to={"/home"}
+                style={{
+                  color: "white",
+                  fontSize: "xx-large",
+                  display: "flex",
+                }}
+              >
+                <span
+                  style={{
+                    width: "50px",
+                  }}
+                >
+                  <Logo
+                    color={"white"}
+                    style={{
+                      width: "50px",
+                    }}
+                  />
+                </span>
+                <p style={{ fontFamily: "Caramel", fontSize: "50px" }}>
+                  Serene
+                </p>
+              </Link>
+            </div>
+            <h1
+              style={{
+                padding: "10px",
+                marginBottom: ".1rem",
+                fontFamily: "Inria Sans",
+              }}
+            >
+              Hello, Friend
+            </h1>
+            <p
+              style={{
+                padding: "10px",
+                fontSize: "16px",
+                fontFamily: "Inria Sans",
+              }}
+            >
               Enter your personal detalis to start a journey with us
             </p>
-            <Button
-              width={"90px"}
-              height={"40px"}
-              text={"Sign Up"}
-              onClick={handleClick}
-              color={"white"}
-              bg={"rgba(0, 0, 0, 0)"}
-              b={"white 1.5px solid"}
-              bR={"20px"}
-              p={"15px"}
-            />
+            <br />
+            <div
+              onClick={() => handleClick()}
+              style={{
+                width: "100px",
+                height: "40px",
+                color: "white",
+                bacground: "transparent",
+                border: "white 1.5px solid",
+                borderRadius: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+            >
+              Sign Up
+            </div>
           </>
         ) : (
           <>
-            <h1 style={{ padding: "10px" }}>Welcome, Back</h1>
-            <p style={{ padding: "10px" }}>
+            <div className="side_div">
+              <Link
+                to={"/home"}
+                style={{
+                  color: "white",
+                  fontSize: "xx-large",
+                  display: "flex",
+                }}
+              >
+                <span style={{ width: "50px" }}>
+                  <Logo color={"white"} />
+                </span>
+                <p style={{ fontFamily: "Caramel", fontSize: "50px" }}>
+                  Serene
+                </p>
+              </Link>
+            </div>
+            <h1 style={{ padding: "10px", fontFamily: "Inria Sans" }}>
+              Welcome, Back
+            </h1>
+            <p
+              style={{
+                padding: "10px",
+                fontSize: "16px",
+                fontFamily: "Inria Sans",
+              }}
+            >
               To keep connected with us please log in with your personal
               infromation
             </p>
-            <Button
-              width={"90px"}
-              height={"40px"}
-              text={"Sign In"}
-              onClick={handleClick}
-              color={"white"}
-              bg={"rgba(0, 0, 0, 0)"}
-              b={"white 1.5px solid"}
-              bR={"20px"}
-              p={"15px"}
-            />
+            <br />
+            <div
+              onClick={() => handleClick()}
+              style={{
+                width: "100px",
+                height: "40px",
+                color: "white",
+                bacground: "transparent",
+                border: "white 1.5px solid",
+                borderRadius: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+            >
+              Sign In
+            </div>
           </>
         )}
       </div>

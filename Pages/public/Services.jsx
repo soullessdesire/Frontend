@@ -1,14 +1,9 @@
-import React from "react";
-import Navbar from "../universal/Navbar";
 import Footer from "../universal/Footer";
 import Wave from "../../assets/Wave";
-import "./public.css";
-import Button from "../universal/Button";
 
 const Services = () => {
   return (
     <>
-      <Navbar ul={true} Login={true} />
       <br />
       <br />
       <br />
@@ -19,7 +14,15 @@ const Services = () => {
           height: "fit-content",
         }}
       >
-        <h1 style={{ textAlign: "center", marginBottom: "5rem" }}>Services</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            marginBottom: "5rem",
+            fontFamily: "Arsenal SC",
+          }}
+        >
+          Services
+        </h1>
       </div>
       <div
         style={{
@@ -40,7 +43,9 @@ const Services = () => {
             }}
           ></div>
           <div style={{ width: "50%", marginInline: "1rem" }}>
-            <h1 className="margin_b">Physical Rehab</h1>
+            <h1 className="margin_b" style={{ fontFamily: "Arsenal SC" }}>
+              Physical Rehab
+            </h1>
             <p style={{ fontSize: "small" }} className="margin_b">
               Regain strength and independence with our physical rehabilitation
               programs. Expert therapists use cutting-edge techniques to reduce
@@ -58,7 +63,9 @@ const Services = () => {
               marginInline: "1rem",
             }}
           >
-            <h1 className="margin_b">Drug Rehab</h1>
+            <h1 className="margin_b" style={{ fontFamily: "Arsenal SC" }}>
+              Drug Rehab
+            </h1>
             <p className="margin_b" style={{ fontSize: "small" }}>
               Break free from addiction with our drug rehabilitation services.
               Our compassionate team provides detox, counseling, and therapy
@@ -76,7 +83,9 @@ const Services = () => {
               marginInline: "1rem",
             }}
           >
-            <h1 className="margin_b">Therapy</h1>
+            <h1 className="margin_b" style={{ fontFamily: "Arsenal SC" }}>
+              Therapy
+            </h1>
             <p className="margin_b" style={{ fontSize: "small" }}>
               Transform your life with our therapy services. Experienced
               therapists offer personalized treatment for anxiety, depression,

@@ -1,33 +1,33 @@
-import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import person from "../../assets/5340287_man_people_person_user_users_icon.svg";
 import chat from "../../assets/392521_bubble_chat_comment_message_talk_icon.svg";
 import contacts from "../../assets/510857_account_contacts_group_people_users_icon.svg";
-import userImage from "../../assets/pexels-dhanno-25184994.jpg";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import Button from "../universal/Button";
-import { Grow } from "@mui/material";
 
 const UserProfile = () => {
+  const { userData } = useOutletContext();
+  function capitalize(str) {
+    return str.replace(/^./, (char) => char.toUpperCase());
+  }
+
   const work = false;
   const workPlace = "Nairobi";
   const { username } = useParams();
-  const [profile, setProfile] = useState(null);
   return (
     <div
       style={{
         display: "flex",
         flexGrow: "1",
+        height: "fit-content",
       }}
     >
       <div
         style={{
           display: "flex",
-          width: "90vw",
+          width: "86vw",
           marginLeft: ".1rem",
-          overflowY: "scroll",
-          overflowX: "hidden",
+          overflow: "hidden scroll",
           height: "calc(100vh - 90px)",
           flexGrow: "1",
         }}
@@ -42,8 +42,17 @@ const UserProfile = () => {
           }}
         >
           <div className="profile">
-            {profile ? (
-              <img src={userImage}></img>
+            {userData.Image.path ? (
+              <img
+                src={userData.Image.path
+                  .concat("..\\")
+                  .replace(/\\{2,2}/g, "/")
+                  .replace("frontend/", "")}
+                width={"85%"}
+                style={{
+                  aspectRatio: "4/3",
+                }}
+              />
             ) : (
               <AccountCircleIcon sx={{ color: "#3da33d", fontSize: 80 }} />
             )}
@@ -131,7 +140,7 @@ const UserProfile = () => {
             width: "60%",
             borderLeft: "1px #d9d9d9 solid",
             marginLeft: "1rem",
-            height: "100vh",
+            height: "fit-content",
             paddingLeft: "1rem",
             paddingTop: "1.5rem",
           }}
@@ -139,51 +148,48 @@ const UserProfile = () => {
           <div className="info">
             <div>
               <h1>
-                {username} <LocationOnIcon sx={{ color: "#818181" }} />
+                {capitalize(username)}{" "}
+                <LocationOnIcon sx={{ color: "#818181" }} />
               </h1>
               <p style={{ color: "#818181" }}>location</p>
               <p>{"work"}</p>
             </div>
             <div style={{ display: "flex" }}>
               <Button
-                color={"#3da33d"}
-                text={"Send message"}
-                imgurl={chat}
-                imgh={"30px"}
-                imgw={"30px"}
-                width={"8rem"}
-                margin={"1rem"}
-                height={"3rem"}
-              />
-              <Button
-                text={"Contacts"}
-                bg={"#b9f9b3"}
-                color={"#3da33d"}
-                imgurl={contacts}
-                imgh={"30px"}
-                width={"8rem"}
-                margin={"1rem"}
-                height={"3rem"}
-              />
-            </div>
-            <div>
-              <ul
                 style={{
+                  color: "#3da33d",
+                  width: "8rem",
+                  marginRight: "1rem",
+                  marginBlock: "1rem",
+                  height: "3rem",
                   display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  border: "none",
+                  gap: ".2rem",
                 }}
               >
-                <li>
-                  <Button
-                    text={"About"}
-                    imgurl={person}
-                    imgh={"30px"}
-                    imgw={"30px"}
-                    color={"#3da33d"}
-                    bb={"1.5px #3da33d solid"}
-                    width={"5rem"}
-                  />
-                </li>
-              </ul>
+                <img src={chat} alt="" width={"30px"} />
+                Send message
+              </Button>
+              <Button
+                style={{
+                  background: "#b9f9b3",
+                  color: "#3da33d",
+                  width: "8rem",
+                  marginInline: "1rem",
+                  marginBlock: "1rem",
+                  height: "3rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  border: "none",
+                  gap: ".2rem",
+                }}
+              >
+                <img src={contacts} alt="" width={"30px"} />
+                Send Email
+              </Button>
             </div>
             <br />
             <div className="contact_info border_top por">

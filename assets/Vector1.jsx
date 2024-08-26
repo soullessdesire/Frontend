@@ -1,11 +1,12 @@
 import React from "react";
 
-function Vector1() {
+function Vector1({ width, height, style }) {
   return (
     <>
       <svg
-        width="182"
-        height="198"
+        style={style}
+        width={width || "182"}
+        height={height || "192"}
         viewBox="0 0 182 198"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

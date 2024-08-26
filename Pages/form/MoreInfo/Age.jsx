@@ -1,18 +1,25 @@
-import React from "react";
+import { useRef, useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "../../universal/Button";
 
 const Age = () => {
+  const [isDisable, setIsDisabled] = useState(true);
+  const ref = useRef([]);
+  useEffect(() => {
+    setIsDisabled(ref.current.value === "");
+  }, [ref.current.value]);
   const { formData, handleFormDataChange } = useOutletContext();
   const handleChange = (e) => {
     const { name, value } = e.target;
     handleFormDataChange(name, value);
   };
   const handleKeyDown = (event) => {
-    if (event) {
-      console.log(event.target.parentNode);
-      event.target.parentNode.querySelector(".after").style.display = "none";
-    }
+    const after = event.target.parentNode.querySelector(".after").style;
+
+    after.color = "var(--primary-color)";
+    after.fontSize = "12px";
+    after.fontWeight = "400";
+    after.top = "30%";
   };
   return (
     <>
@@ -27,20 +34,24 @@ const Age = () => {
             onChange={handleChange}
             value={formData.age}
             onKeyDown={handleKeyDown}
-            style={{ marginRight: "10rem" }}
+            ref={ref}
           />
           <div className="after">age</div>
         </div>
       </label>
       <Button
-        to={"/form/moreinfo/address"}
+        to={"/form/moreinfo/religion&tribe"}
         hC={true}
-        text={"Next"}
-        bg={"#3da33d"}
-        color={"white"}
-        p={".75rem 3rem"}
-        margin={"2.5%"}
-      />
+        style={{
+          background: "#3da33d",
+          color: "white",
+          padding: ".75rem 3rem",
+          margin: "3%",
+        }}
+        disabled={isDisable}
+      >
+        <p>Next</p>
+      </Button>
     </>
   );
 };

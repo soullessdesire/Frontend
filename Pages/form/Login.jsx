@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../universal/Button";
-import Facebook from "../../assets/104498_facebook_icon.svg";
-import Google from "../../assets/9034975_logo_google_icon.svg";
+import ForgotPassEmail from "./ForgotPassEmail";
+import Modal from "../../utils/Modal";
+import OtherLogins from "../universal/OtherLogins";
+
 import axios from "axios";
 function Login(opacity) {
   let [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
   });
+  const [show, setShow] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
-  const [error, setError] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -24,14 +27,19 @@ function Login(opacity) {
       })
       .catch((err) => {
         console.error("Error submittimg data: ", err.response.data.message);
-        setError(err.response.data.message);
       });
   };
+  useEffect(() => {
+    setIsDisabled(!Object.values(userDetails).every((value) => value !== ""));
+  }, [userDetails]);
   const handleKeyDown = (event) => {
-    if (event) {
-      console.log(event.target.parentNode);
-      event.target.parentNode.querySelector(".after").style.display = "none";
-    }
+    const after = event.target.parentNode.querySelector(".after").style;
+
+    after.color = "var(--secondary-color)";
+    after.fontSize = "12px";
+    after.fontWeight = "400";
+    after.top = "28%";
+    after.left = ".2%";
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,34 +61,9 @@ function Login(opacity) {
         opacity: opacity || 1,
       }}
     >
-      <h1>Sign in to Serene.</h1>
-      <div
-        className="links"
-        style={{
-          width: "35%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        <Button
-          bR={"50%"}
-          imgurl={Facebook}
-          bg={"rgba(0,0,0,0)"}
-          b={"#3da33d 1.5px solid"}
-          p={"5px"}
-        />
-        <Button
-          bR={"50%"}
-          imgurl={Google}
-          bg={"rgba(0,0,0,0)"}
-          b={"#3da33d 1.5px solid"}
-          p={"5px"}
-          to={"http://localhost:3000/auth/google"}
-        />
-      </div>
+      <h1>Sign in</h1>
+      <OtherLogins />
       <p>or use your email for registration</p>
-      {error && <div style={{ color: "red" }}>{error}</div>}
       <form
         onSubmit={handleSubmit}
         style={{
@@ -100,7 +83,15 @@ function Login(opacity) {
             value={userDetails.username}
             onKeyDown={handleKeyDown}
           />
-          <div className="after">Username</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Username
+            </p>
+          </div>
         </div>
         <label htmlFor="password"></label>
         <div className="input_wrapper">
@@ -112,23 +103,58 @@ function Login(opacity) {
             onKeyDown={handleKeyDown}
             value={userDetails.password}
           />
-          <div className="after">Password</div>
+          <div className="after">
+            <p
+              style={{
+                backgroundColor: "var(--meta-color)",
+              }}
+            >
+              Password
+            </p>
+          </div>
         </div>
         <br />
-        <Button
-          text={"Forgot your password ?"}
-          bg={"rgba(0,0,0,0)"}
-          color={"#3da33d"}
-        />
-        <br />
+        <button
+          style={{
+            color: "var(--primary-color)",
+            border: "none",
+            backgroundColor: "transparent",
+            marginBottom: "1rem",
+          }}
+          type="button"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            document.body.style.overflow = "hidden";
+            setShow(true);
+          }}
+        >
+          Forgot Password ?
+        </button>
+        <Modal show={show} window={false}>
+          <ForgotPassEmail
+            closeModal={() => {
+              setShow(false);
+              document.body.style.overflow = "auto";
+            }}
+          />
+        </Modal>
         <Button
           type="submit"
-          text={"Submit"}
-          width={"90px"}
-          height={"40px"}
-          bR={"20px"}
-          bg={"#3da33d"}
-        ></Button>
+          style={{
+            width: "90px",
+            height: "40px",
+            borderRadius: "20px",
+            background: "#3da33d",
+            color: "white",
+            border: "none",
+            backgroundColor: `${
+              isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+            }`,
+          }}
+          disabled={isDisabled}
+        >
+          Submit
+        </Button>
       </form>
     </div>
   );

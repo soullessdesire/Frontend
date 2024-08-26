@@ -14,7 +14,75 @@ a {
 button {
   cursor: pointer;
 }
-
+.f_nav {
+  width: 100%;
+  height: var(--navbar-height);
+  color: var(--primary-color);
+  border-bottom: var(--secondary-color) 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
+.nav_nd {
+  width: 20%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 0.7rem;
+}
+.f_nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  width: 50%;
+  height: inherit;
+}
+.f_nav ul .reg {
+  transition: background-color 200ms linear;
+  transition: color 300mx ease;
+  color: var(--primary-color);
+  border: var(--primary-color) 0.5px solid;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.1rem;
+}
+.f_nav ul .reg:hover {
+  color: var(--meta-color);
+  background-color: var(--primary-color);
+}
+.f_nav ul .lgn {
+  transition: background-color 200ms linear;
+  transition: color 300mx ease;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.1rem;
+  color: var(--meta-color);
+  background-color: var(--primary-color);
+  border: var(--primary-color) 0.5px solid;
+}
+.f_nav ul .lgn:hover {
+  color: var(--primary-color);
+  background-color: var(--meta-color);
+}
+.active {
+  border-bottom: #3da33d 2px solid;
+  padding-bottom: 2px;
+}
+.hover {
+  position: relative;
+}
+.hover::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  bottom: -3px;
+  left: 1px;
+  height: 2px;
+  background-color: #3da33d;
+  opacity: 0;
+}
+.hover:hover::after {
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
 .h_nav {
   width: 100%;
   height: 90px;
@@ -25,12 +93,12 @@ button {
   align-items: center;
 }
 .h_nav span {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 5rem;
 }
 .h_nav span span {
   font-family: "Inria Sans", sans-serif;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 5rem;
 }
 .h_nav ul {
@@ -61,6 +129,7 @@ button {
 /* TODO: 
 1. write the animations and transitions
 */
+
 .main .h__section {
   width: 100%;
   height: 854px;
@@ -70,6 +139,7 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  filter: grayscale(1);
   z-index: 0;
 }
 .main .h__section .deco {
@@ -79,7 +149,7 @@ button {
   left: 0;
   z-index: 1;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.558);
 }
 .main .h__section .content {
   position: absolute;
@@ -94,9 +164,10 @@ button {
   justify-content: center;
   padding-left: 15px;
   color: var(--meta-color);
+  background-color: transparent;
 }
 .main .h__section div h1 {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 4rem;
   margin-bottom: 40px;
 }
@@ -119,7 +190,7 @@ button {
 }
 .opener_section {
   width: 100%;
-  height: 712px;
+  height: 500px;
   display: flex;
 }
 .opener_section .first_half {
@@ -167,19 +238,19 @@ button {
 .nd_section {
   background-color: var(--secondary-color);
   width: 100%;
-  height: 1948px;
+  height: 1800px;
 }
 .nd_section .tp_h {
   display: flex;
 }
 .nd_section .tp_h .right {
   width: 50%;
-  height: 709px;
+  height: 600px;
   position: relative;
 }
-.nd_section .tp_h .right .one,
-.nd_section .tp_h .right .two,
-.nd_section .tp_h .right .three,
+.nd_section .one,
+.nd_section .two,
+.nd_section .three,
 .nd_section .four,
 .nd_section .five,
 .nd_section .six {
@@ -191,26 +262,11 @@ button {
   background-size: cover;
 }
 .nd_section .tp_h .right .one {
-  border-radius: 10% 30% 7.5% 7.5%;
   background-image: url("../assets/prince-akachi-4Yv84VgQkRM-unsplash.jpg");
   box-shadow: black 10px 10px;
   top: 0;
   border-top: 2px solid black;
-
   left: 40%;
-}
-.nd_section .tp_h .right .two {
-  border-radius: 50% 10% 50% 45%;
-  background-image: url("../assets/airiz--DJXxqZ7mo8-unsplash.jpg");
-  box-shadow: black -10px -10px;
-  bottom: 20%;
-}
-.nd_section .tp_h .right .three {
-  border-radius: 10% 7.5% 30% 7.5%;
-  background-image: url("../assets/pexels-ron-lach-9869646.jpg");
-  box-shadow: black 10px 10px;
-  bottom: 0;
-  right: 0;
 }
 .nd_section .four {
   border-radius: 45% 10% 45% 7.5%;
@@ -236,7 +292,7 @@ button {
 .nd_section .tp_h .wrong {
   display: flex;
   width: 50%;
-  height: 709px;
+  height: 600px;
   flex-direction: column;
 }
 .nd_section .tp_h .wrong h1 {
@@ -261,7 +317,6 @@ button {
   margin-top: 150px;
   margin-bottom: 50px;
   font-size: 3rem;
-  font-weight: 900;
 }
 .nd_section .btm_h .rt {
   position: relative;
@@ -277,27 +332,27 @@ button {
 .rd_section {
   display: flex;
   width: 100%;
-  height: 900px;
+  height: 800px;
   flex-wrap: wrap;
   flex-direction: row;
 }
 .rd_section > div {
   width: 50%;
-  height: 400px;
-}
-.rd_section .pic1 {
-  background-image: url("../assets/pexels-panditwiguna-1128318.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 41% 59% 54% 46% / 62% 30% 70% 38%;
+  height: 600px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 .rd_section .pic2 {
   background-image: url("../assets/pexels-wildlittlethingsphoto-697244.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 61% 39% 50% 50% / 25% 58% 42% 75%;
+  height: 100%;
+  mask: url("../assets//Stolen\ Butterfly.svg");
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask: url("../assets//Stolen\ Butterfly.svg");
 }
 .rd_section .text1 {
   display: flex;
@@ -322,16 +377,6 @@ button {
   padding-left: 0.4rem;
   margin-top: 1rem;
 }
-.rd_section .text1 a {
-  width: fit-content;
-}
-.rd_section .text1 a button {
-  border: none;
-  color: var(--meta-color);
-  border-radius: 2px;
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
-}
 .rd_section .text2 {
   display: flex;
   flex-direction: column;
@@ -350,17 +395,6 @@ button {
   text-decoration-style: solid;
   text-underline-offset: 5px;
   padding-top: 0.7rem;
-}
-.rd_section .text2 a {
-  width: fit-content;
-}
-.rd_section .text2 a button {
-  border: none;
-  background-color: var(--primary-color);
-  color: var(--meta-color);
-  border-radius: 2px;
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
 }
 .FAQs {
   height: 700px;
@@ -406,21 +440,21 @@ footer .muskerters {
 }
 footer .first {
   flex: 1;
-  height: 400px;
+  height: 300px;
   padding: 1rem;
 }
 footer .second {
   flex: 1;
   padding-top: 1rem;
   padding-inline: 2rem;
-  height: 400px;
+  height: 300px;
 }
 footer .second ul {
   width: 175px;
 }
 footer .third {
   flex: 1;
-  height: 400px;
+  height: 300px;
   padding-top: 1rem;
 }
 footer .third ul {

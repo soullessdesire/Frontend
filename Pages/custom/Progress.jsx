@@ -1,4 +1,3 @@
-import React from "react";
 import "./User.css";
 import Donut from "./Charts/Donut";
 import Line from "./Charts/Line";
@@ -16,24 +15,6 @@ const Progress = () => {
         height: "calc(100vh - 90px)",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <div className="the_three">
-          <Pie />
-        </div>
-        <div className="the_three">
-          <Donut />
-        </div>
-        <div className="the_three">
-          <Bar />
-        </div>
-      </div>
       <div style={{ display: "flex" }}>
         <div
           style={{
@@ -55,6 +36,24 @@ const Progress = () => {
               "rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px",
           }}
         ></div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <div className="the_three pie">
+          <Pie />
+        </div>
+        <div className="the_three donut">
+          <Donut />
+        </div>
+        <div className="the_three bar">
+          <Bar />
+        </div>
       </div>
     </div>
   );

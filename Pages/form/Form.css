@@ -2,7 +2,11 @@
   --primary-color: #3da33d;
   --accent-color: #b9f9b3;
   --secondary-color: #d9d9d9;
+  --secondary-text-color: #989898;
   --meta-color: white;
+  --dark-color: ;
+  --navbar-height: 85px;
+  --disabled-color: #84ff78;
 }
 
 .log_main {
@@ -13,9 +17,10 @@
   width: 100%;
 }
 .log_main .wrapper {
-  height: 80%;
+  height: 90%;
   border-radius: 2px;
-  width: 90%;
+  width: 75%;
+  max-height: 800px;
   display: flex;
   position: relative;
   border: var(--secondary-color) 0.5px solid;
@@ -50,10 +55,10 @@ form input:not(form input[type="checkbox"]) {
   border-radius: 4px;
   border: rgb(165, 164, 164) 1px solid;
   outline: none;
-  padding: 2%;
-  margin: 3%;
+  padding: 2% 2% 2% 4%;
+  margin: 3% 3% 3% 0;
 }
-form input:focus {
+form input:not(form input[type="checkbox"]):focus {
   border: var(--primary-color) 1px solid;
 }
 form .input_wrapper {
@@ -62,111 +67,40 @@ form .input_wrapper {
 form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
-  padding-left: 15px;
+  padding-left: 25px;
   font-weight: 400;
 }
-form input[type="text"] ~ .after {
-  height: 20px;
+.after {
+  height: 25.5px;
   width: fit-content;
-  top: 50%;
-  left: 5%;
+  top: 60%;
+  left: 2%;
   position: absolute;
-  color: black;
+  color: rgb(129, 129, 129);
   transform: translateY(-100%);
-  padding: 10px;
+  padding: 10px 2px 2px 8px;
   transition: all 3s ease-in-out 0;
-  background-color: var(--meta-color);
+  background-color: transparent;
   transition: all 0.2s ease;
+  text-align: center;
 }
-form input[type="text"]:hover ~ .after,
-form input[type="text"]:focus ~ .after {
+form input:not(form input[type="checkbox"]):hover ~ .after,
+form input:not(form input[type="checkbox"]):focus-within ~ .after,
+form .select:hover .after,
+form .select:focus .after,
+.after:hover {
   color: var(--primary-color);
-  top: 20%;
-  font-size: small;
+  top: 29%;
+  font-size: 12px;
   transition: all 3s ease-in-out 0;
   font-weight: 400;
+  left: 0.2%;
 }
-form input[type="email"] ~ .after {
-  height: 10px;
-  width: fit-content;
-  top: 50%;
-  left: 5%;
-  position: absolute;
-  color: black;
-  transform: translateY(-100%);
-  padding: 10px;
-  transition: all 3s ease-in-out 0;
-  background-color: var(--meta-color);
-  transition: all 0.2s ease;
+form input[type="number"]::-webkit-inner-spin-button {
+  display: none;
 }
-form input[type="email"]:hover ~ .after,
-form input[type="email"]:focus ~ .after {
-  color: var(--primary-color);
-  top: 20%;
-  font-size: small;
-  transition: all 3s ease-in-out 0;
-  font-weight: 400;
-}
-form input[type="tel"] ~ .after {
-  height: 10px;
-  width: fit-content;
-  top: 50%;
-  left: 5%;
-  position: absolute;
-  color: black;
-  transform: translateY(-100%);
-  padding: 10px;
-  transition: all 3s ease-in-out 0;
-  background-color: var(--meta-color);
-  transition: all 0.2s ease;
-}
-form input[type="tel"]:hover ~ .after,
-form input[type="tel"]:focus ~ .after {
-  color: var(--primary-color);
-  top: 20%;
-  font-size: small;
-  transition: all 3s ease-in-out 0;
-  font-weight: 400;
-}
-form input[type="number"] ~ .after {
-  height: 10px;
-  width: fit-content;
-  top: 50%;
-  left: 5%;
-  position: absolute;
-  color: black;
-  transform: translateY(-100%);
-  padding: 10px;
-  transition: all 3s ease-in-out 0;
-  background-color: var(--meta-color);
-  transition: all 0.2s ease;
-}
-form input[type="number"]:hover ~ .after,
-form input[type="number"]:focus ~ .after {
-  color: var(--primary-color);
-  top: 20%;
-  font-size: small;
-  transition: all 3s ease-in-out 0;
-  font-weight: 400;
-}
-form input[type="password"] ~ .after {
-  height: 20px;
-  width: fit-content;
-  top: 50%;
-  left: 5%;
-  position: absolute;
-  color: black;
-  transform: translateY(-100%);
-  padding: 10px;
-  background-color: var(--meta-color);
-  transition: all 0.2s ease;
-}
-form input[type="password"]:hover ~ .after,
-form input[type="password"]:focus ~ .after {
-  color: var(--primary-color);
-  top: 20%;
-  font-size: small;
-  font-weight: 400;
+form input[type="number"]::-webkit-outer-spin-button {
+  display: none;
 }
 .log_main .wrapper a button {
   border-radius: 2px;
@@ -189,4 +123,43 @@ form input[type="password"]:focus ~ .after {
 }
 .nusu {
   width: 50%;
+}
+.wrapper .nusu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.list {
+  flex-flow: column nowrap;
+  width: 270px;
+  height: 160px;
+  position: absolute;
+  background-color: var(--meta-color);
+  color: var(--primary-color);
+  overflow-y: auto;
+  margin: 3%;
+  top: 97%;
+  left: 0;
+  border: #87ff65 1px solid;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #77e459;
+  border: 2px solid #ffffff;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
 }

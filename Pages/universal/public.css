@@ -10,7 +10,7 @@
   margin-left: 5rem;
 }
 .about_divs {
-  height: 400px;
+  height: 500px;
   width: 50%;
 }
 .pros_img {
@@ -70,4 +70,55 @@
   height: 375px;
   display: flex;
   border: 0.5px #87ff65 solid;
+}
+.a_main {
+  padding: 4.5rem;
+}
+
+.not_content {
+  height: 80px;
+  width: calc(100% - 8px);
+  padding: 1rem;
+  margin-top: 4px;
+  background: red;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+#notifications {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  pointer-events: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.slideRight {
+  animation-name: slideRight;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  /* animation-delay: 5s; */
+}
+@keyframes slideRight {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }

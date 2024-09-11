@@ -6,6 +6,7 @@ import Modal from "../../utils/Modal";
 import OtherLogins from "../universal/OtherLogins";
 
 import axios from "axios";
+import { createErrorNotification } from "../universal/createErrorNotification";
 function Login(opacity) {
   let [userDetails, setUserDetails] = useState({
     username: "",
@@ -17,7 +18,7 @@ function Login(opacity) {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/login", userDetails)
+      .post("https://localhost:3000/api/login", userDetails)
       .then((response) => {
         console.log("Form submitted successfully: ", response.data);
         localStorage.setItem("token", response.data.token);
@@ -26,7 +27,8 @@ function Login(opacity) {
         }
       })
       .catch((err) => {
-        console.error("Error submittimg data: ", err.response.data.message);
+        console.log(err);
+        createErrorNotification(err.response.data.message);
       });
   };
   useEffect(() => {
@@ -116,7 +118,7 @@ function Login(opacity) {
         <br />
         <button
           style={{
-            color: "var(--primary-color)",
+            color: "#3da33d",
             border: "none",
             backgroundColor: "transparent",
             marginBottom: "1rem",
@@ -148,7 +150,7 @@ function Login(opacity) {
             color: "white",
             border: "none",
             backgroundColor: `${
-              isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+              isDisabled ? "var(--disabled-color)" : "#3da33d"
             }`,
           }}
           disabled={isDisabled}

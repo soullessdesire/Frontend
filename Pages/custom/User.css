@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #3da33d;
+  --accent-color: #b9f9b3;
+  --secondary-color: #d9d9d9;
+  --secondary-text-color: #989898;
+  --meta-color: white;
+  --dark-color: ;
+  --navbar-height: 85px;
+  --disabled-color: #84ff78;
+}
 .profile {
   display: flex;
   align-items: center;
@@ -45,21 +55,17 @@
   transition: width 30ms linear;
 }
 .bar {
-  width: 300px;
-  height: 170px;
+  width: 450px;
+  height: 190px;
 }
 .pie {
-  width: 225px;
-  height: 300px;
-}
-.donut {
-  width: 225px;
-  height: 300px;
+  width: 300px;
+  height: 400px;
 }
 .the_three {
-  margin-top: 1rem;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px,
+    rgba(0, 0, 0, 0.15) -1.95px -1.95px 2.6px;
+  border-radius: 12px;
 }
 .modal {
   position: absolute;
@@ -105,37 +111,41 @@
   width: 100%;
   background-color: var(--primary-color);
 }
-table {
+.table {
   width: 100%;
   border-collapse: collapse;
   background-color: var(--meta-color);
 }
 
-thead {
+.thead {
   background-color: var(--primary-color);
   color: var(--meta-color);
 }
 
-th {
+.th {
   padding: 10px;
   text-align: left;
   border-bottom: 2px solid var(--primary-color);
 }
 
-tbody tr {
+.tbody tr {
   border-bottom: 1px solid #ddd;
 }
 
-td {
+.td {
   padding: 10px;
   text-align: left;
 }
 
-tbody tr:hover {
+.tbody tr:hover {
   background-color: var(--primary-color);
   color: var(--meta-color);
 }
 
 input[type="checkbox"] {
   margin: 0 1.5rem 0 0;
+}
+
+.padding {
+  padding: 0.75rem;
 }

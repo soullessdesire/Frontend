@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useState, useEffect, lazy } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+const axios = lazy(() => import("axios"));
 
 function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -10,12 +13,12 @@ function Admin() {
         .post("/auth", { token })
         .then((response) => setIsAuthenticated(response.data.level))
         .catch(() => {
-          // navigate("/login");
+          navigate("/login");
         });
     } else if (location.pathname !== "/register") {
-      // navigate("/login");
+      navigate("/login");
     }
-  }, [navigate, location.pathname]);
+  }, [navigate]);
   return <>{isAuthenticated === 3 ? <></> : <Navigate to={"/login"} />}</>;
 }
 

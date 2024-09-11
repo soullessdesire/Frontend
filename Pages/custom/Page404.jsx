@@ -5,7 +5,7 @@ function Page404() {
     <div
       style={{
         width: "100%",
-        height: "calc(100vh - var(--navbar-height))",
+        height: "calc(100vh)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -27,7 +27,7 @@ function Page404() {
           borderRadius: "4px",
           background: "#3da33d",
           border: "none",
-          color: "var(--meta-color)",
+          color: "#fff",
         }}
       >
         <p>Home</p>

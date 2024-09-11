@@ -20,7 +20,7 @@ const GenderStatus = () => {
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;
 
-    after.color = "var(--primary-color)";
+    after.color = "#3da33d";
     after.fontSize = "12px";
     after.fontWeight = "400";
     after.top = "30%";
@@ -112,7 +112,7 @@ const GenderStatus = () => {
           color: "white",
           border: "none",
           backgroundColor: `${
-            isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+            isDisabled ? "var(--disabled-color)" : "#3da33d"
           }`,
         }}
         to={"/form/moreinfo/kin"}

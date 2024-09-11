@@ -1,15 +1,22 @@
-import React from "react";
-import Wave from "../../assets/Wave";
-import Navbar from "../universal/Navbar";
+import { lazy } from "react";
+const Wave = lazy(() => import("../../assets/Wave"));
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const FAQ = () => {
+const Faq = () => {
   const handleClick = (event) => {
     event.target.querySelector("p").style.display = "flex";
   };
   return (
     <>
-      <section className="FAQs" style={{ fontFamily: "Josefin Sans" }}>
+      <section
+        className="FAQs"
+        style={{
+          fontFamily: "Josefin Sans",
+          backgroundColor: "#3da33d",
+          color: "white",
+          marginTop: "4rem",
+        }}
+      >
         <Wave
           color={"white"}
           viewBox={"0 0 450 120"}
@@ -18,11 +25,21 @@ const FAQ = () => {
           backgroundColor={"transparent"}
         />
         <div>
-          <h1>FAQ?</h1>
+          <h1
+            style={{
+              color: "ActiveBorder",
+            }}
+          >
+            FAQ?
+          </h1>
         </div>
         <ul>
           <li
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px white solid",
+            }}
             onClick={handleClick}
           >
             <a href="">Who are therapists ?</a>
@@ -30,7 +47,11 @@ const FAQ = () => {
             <p style={{ display: "none" }}></p>
           </li>
           <li
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px white solid",
+            }}
             onClick={handleClick}
           >
             <a href="">How long does a registration last ?</a>
@@ -38,7 +59,11 @@ const FAQ = () => {
             <p style={{ display: "none" }}></p>
           </li>
           <li
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px white solid",
+            }}
             onClick={handleClick}
           >
             <a href="">Any more methods to communicate with therapist ?</a>
@@ -46,7 +71,11 @@ const FAQ = () => {
             <p style={{ display: "none" }}></p>
           </li>
           <li
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px white solid",
+            }}
             onClick={handleClick}
           >
             <a href="">How can I sign up ?</a>
@@ -54,7 +83,11 @@ const FAQ = () => {
             <p style={{ display: "none" }}></p>
           </li>
           <li
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px white solid",
+            }}
             onClick={handleClick}
           >
             <a href="">How much does it cost ?</a>
@@ -67,4 +100,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default Faq;

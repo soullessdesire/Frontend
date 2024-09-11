@@ -16,7 +16,7 @@ const Age = () => {
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;
 
-    after.color = "var(--primary-color)";
+    after.color = "#3da33d";
     after.fontSize = "12px";
     after.fontWeight = "400";
     after.top = "30%";

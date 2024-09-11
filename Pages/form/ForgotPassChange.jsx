@@ -25,7 +25,7 @@ const ForgotPassChange = () => {
   const handleKeyDown = (event) => {
     const afterStyle = event.target.parentNode.querySelector(".after").style;
 
-    afterStyle.color = "var(--primary-color)";
+    afterStyle.color = "#3da33d";
     afterStyle.fontSize = "12px";
     afterStyle.fontWeight = "400";
     afterStyle.top = "30%";
@@ -90,7 +90,7 @@ const ForgotPassChange = () => {
             type={"submit"}
             style={{
               color: "var(--meta-color)",
-              background: "var(--primary-color)",
+              background: "#3da33d",
               padding: ".75rem 3rem",
               border: "none",
               margin: "3%",

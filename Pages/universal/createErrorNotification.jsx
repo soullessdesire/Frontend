@@ -21,7 +21,7 @@ export const createErrorNotification = (error) => {
             setTimeout(() => {
               root.unmount();
               notificationsContainer.removeChild(wrapperDiv);
-            }, 3010);
+            }, 1000);
           }
         }}
       />
@@ -29,10 +29,13 @@ export const createErrorNotification = (error) => {
 
     setTimeout(() => {
       if (notificationsContainer.contains(wrapperDiv)) {
-        root.unmount();
-        notificationsContainer.removeChild(wrapperDiv);
+        wrapperDiv.classList.add("slideRight");
+        setTimeout(() => {
+          root.unmount();
+          notificationsContainer.removeChild(wrapperDiv);
+        }, 1000);
       }
-    }, 8010);
+    }, 3000);
   } else {
     console.error("Notifications container not found");
   }

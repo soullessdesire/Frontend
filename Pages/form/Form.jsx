@@ -11,9 +11,3 @@ function Form() {
   );
 }
 export default Form;
-//   <div>
-//     {/* <div className="decoration_wrapper">
-//   <div className="decoration"></div>
-//   <p>Or</p>
-// </div> */}
-//   </div>;

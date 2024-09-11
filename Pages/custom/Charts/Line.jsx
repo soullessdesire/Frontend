@@ -1,4 +1,3 @@
-import React from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -9,7 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  plugins,
 } from "chart.js";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -19,27 +20,61 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const LineGraph = () => {
-  const options = {};
+
+const LineChart = () => {
+  // Data and configuration for the line chart
+  const points = [65, 59, 80, 81, 56, 55, 40];
+  const stepSize = 20;
   const data = {
-    labels: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
-        label: "Steps",
-        data: [2000, 3000, 4000, 3500, 4500, 2500, 5000],
-        borderColor: "rgb(0,0,0,0.2)",
+        label: "My First Dataset",
+        data: points,
+        fill: true,
+        backgroundColor: "rgba(61, 163, 61, 0.2)",
+        borderColor: "#3da33d",
+        tension: 0.3,
+        borderWidth: 1,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: "rgba(0, 0, 0, 0)",
+        pointBorderColor: "rgba(0, 0, 0, 0)",
       },
     ],
   };
-  return <Line options={options} data={data} />;
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: true,
+        },
+        ticks: {
+          stepSize,
+        },
+        min: Math.max(0, Math.min(...points) - stepSize),
+      },
+    },
+    interaction: {
+      mode: "nearest",
+      axis: "x",
+      intersect: false,
+    },
+  };
+
+  return <Line data={data} options={options} />;
 };
 
-export default LineGraph;
+export default LineChart;

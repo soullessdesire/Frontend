@@ -17,7 +17,7 @@ const ForgotPassEmail = ({ closeModal }) => {
   const handleKeyDown = (event) => {
     const afterStyle = event.target.parentNode.querySelector(".after").style;
 
-    afterStyle.color = "var(--primary-color)";
+    afterStyle.color = "#3da33d";
     afterStyle.fontSize = "12px";
     afterStyle.fontWeight = "400";
     afterStyle.top = "30%";

@@ -1,138 +1,146 @@
+/* eslint-disable react/jsx-key */
+// import { useEffect } from "react";
 import "./User.css";
 
 const Table = () => {
+  const tableData = [
+    [
+      "Checkbox",
+      "ProgramId",
+      "Program",
+      "Description",
+      "Therapist/Conductor",
+      "Duration",
+      "Price",
+    ],
+    [
+      [
+        <input type="checkbox" />,
+        "DR001",
+        "Drug Detox",
+        "Initial detox program",
+        "Dr. Alice Brown",
+        "7 days",
+        "$500",
+      ],
+      [
+        <input type="checkbox" />,
+        "DR002",
+        "Inpatient Rehab",
+        "Comprehensive drug rehab",
+        "Dr. Bob Green",
+        "30 days",
+        "$2000",
+      ],
+      [
+        <input type="checkbox" />,
+        "DR003",
+        "Outpatient Rehab",
+        "Drug rehab with daily sessions",
+        "Dr. Carol White",
+        "60 days",
+        "$1500",
+      ],
+      [
+        <input type="checkbox" />,
+        "CT001",
+        "Couples Counseling",
+        "Basic therapy for couples",
+        "Therapist David Black",
+        "1 hour/session",
+        "$100/session",
+      ],
+      [
+        <input type="checkbox" />,
+        "CT002",
+        "Intensive Couples Therapy",
+        "Weekend therapy retreat",
+        "Therapist Emma Blue",
+        "3 days",
+        "$800",
+      ],
+      [
+        <input type="checkbox" />,
+        "CT003",
+        "Communication Workshop",
+        "Improving communication skills",
+        "Therapist Frank Yellow",
+        "2 hours",
+        "$150",
+      ],
+      [
+        <input type="checkbox" />,
+        "PT001",
+        "Physical Therapy Initial Consultation",
+        "Assessment and plan",
+        "Dr. Grace Gray",
+        "1 hour",
+        "$120",
+      ],
+      [
+        <input type="checkbox" />,
+        "PT002",
+        "Post-Surgery Rehab",
+        "Rehabilitation after surgery",
+        "Dr. Henry Orange",
+        "4 weeks",
+        "$1000",
+      ],
+      [
+        <input type="checkbox" />,
+        "PT003",
+        "Sports Injury Therapy",
+        "Therapy for sports injuries",
+        "Dr. Irene Red",
+        "6 weeks",
+        "$1200",
+      ],
+      [
+        <input type="checkbox" />,
+        "PT004",
+        "Chronic Pain Management",
+        "Therapy for chronic pain",
+        "Dr. Jack Purple",
+        "8 weeks",
+        "$1600",
+      ],
+    ],
+  ];
+  // useEffect(() => {
+  //   for (let array in tableData[1]) {
+  //     if (array.length !== tableData[0].length) {
+  //       throw new Error(
+  //         "The data structure provided of two array are no to equal length"
+  //       );
+  //     }
+  //   }
+  // });
   return (
     <div
       className="table"
       style={{
         display: "flex",
         height: "400px",
-        overflow: "hidden scroll",
       }}
     >
-      <table>
-        <thead>
+      <table className="table">
+        <thead className="thead">
           <tr>
-            <th>Checkbox</th>
-            <th>ProgramID</th>
-            <th>Program</th>
-            <th>Description</th>
-            <th>Therapist/Conductor</th>
-            <th>Duration</th>
-            <th>Price</th>
+            {tableData[0].map((string, key) => {
+              return <td key={key}>{string}</td>;
+            })}
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>DR001</td>
-            <td>Drug Detox</td>
-            <td>Initial detox program</td>
-            <td>Dr. Alice Brown</td>
-            <td>7 days</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>DR002</td>
-            <td>Inpatient Rehab</td>
-            <td>Comprehensive drug rehab</td>
-            <td>Dr. Bob Green</td>
-            <td>30 days</td>
-            <td>$2000</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>DR003</td>
-            <td>Outpatient Rehab</td>
-            <td>Drug rehab with daily sessions</td>
-            <td>Dr. Carol White</td>
-            <td>60 days</td>
-            <td>$1500</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>CT001</td>
-            <td>Couples Counseling</td>
-            <td>Basic therapy for couples</td>
-            <td>Therapist David Black</td>
-            <td>1 hour/session</td>
-            <td>$100/session</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>CT002</td>
-            <td>Intensive Couples Therapy</td>
-            <td>Weekend therapy retreat</td>
-            <td>Therapist Emma Blue</td>
-            <td>3 days</td>
-            <td>$800</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>CT003</td>
-            <td>Communication Workshop</td>
-            <td>Improving communication skills</td>
-            <td>Therapist Frank Yellow</td>
-            <td>2 hours</td>
-            <td>$150</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT001</td>
-            <td>Physical Therapy Initial Consultation</td>
-            <td>Assessment and plan</td>
-            <td>Dr. Grace Gray</td>
-            <td>1 hour</td>
-            <td>$120</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT002</td>
-            <td>Post-Surgery Rehab</td>
-            <td>Rehabilitation after surgery</td>
-            <td>Dr. Henry Orange</td>
-            <td>4 weeks</td>
-            <td>$1000</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT003</td>
-            <td>Sports Injury Therapy</td>
-            <td>Therapy for sports injuries</td>
-            <td>Dr. Irene Red</td>
-            <td>6 weeks</td>
-            <td>$1200</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>PT004</td>
-            <td>Chronic Pain Management</td>
-            <td>Therapy for chronic pain</td>
-            <td>Dr. Jack Purple</td>
-            <td>8 weeks</td>
-            <td>$1600</td>
-          </tr>
+        <tbody className="tbody" style={{ overflow: "hidden scroll" }}>
+          {tableData[1].map((array, key) => {
+            return (
+              <tr key={key}>
+                {array.map((data, key) => {
+                  return <td key={key}>{data}</td>;
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "../../utils/Modal";
 import Table from "./Table";
 import Button from "../universal/Button";
+// "52:8E:7A:B8:FE:E2";
 
 const Programs = () => {
   const [show, setShow] = useState(false);
@@ -37,7 +38,13 @@ const Programs = () => {
         Registered Programs
       </h4>
       <br />
-      <table>
+      <table
+        style={{
+          background: "#3da33d",
+          color: "white",
+          width: "100%",
+        }}
+      >
         <thead>
           <tr>
             <th>Checkbox</th>
@@ -61,7 +68,13 @@ const Programs = () => {
         Completed Programs
       </h4>
       <br />
-      <table>
+      <table
+        style={{
+          background: "#3da33d",
+          color: "white",
+          width: "100%",
+        }}
+      >
         <thead>
           <tr>
             <th>Checkbox</th>
@@ -81,7 +94,12 @@ const Programs = () => {
           closeModal={() => setShow((prev) => !prev)}
           window={true}
         >
-          <Table />
+          <Table
+            style={{
+              background: "#3da33d",
+              color: "white",
+            }}
+          />
         </Modal>
 
         <Button

@@ -27,7 +27,7 @@ function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .get(`http://localhost:3000/api/users/username/${formData.username}`)
+      .get(`https://localhost:3000/api/users/username/${formData.username}`)
       .then((response) => {
         const data = response.data;
         if (data.length) {
@@ -38,6 +38,7 @@ function Signup() {
         }
       })
       .catch((err) => {
+        createErrorNotification(err.message);
         console.log(err);
       });
   };
@@ -155,7 +156,7 @@ function Signup() {
             color: "white",
             border: "none",
             backgroundColor: `${
-              isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+              isDisabled ? "var(--disabled-color)" : "#3da33d"
             }`,
           }}
           disabled={isDisabled}

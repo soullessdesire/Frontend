@@ -5,12 +5,10 @@ import { X } from "lucide-react";
 const Notifications = ({ notification, onClose }) => {
   return (
     <>
-      <div className="not_content">
-        <p>{notification}</p>
-        <button onClick={onClose}>
-          <X strokeWidth={1.5} />
-        </button>
-      </div>
+      <p className="not_p">{notification}</p>
+      <button onClick={onClose} className="not_button">
+        <X strokeWidth={1.5} color={"white"} />
+      </button>
     </>
   );
 };

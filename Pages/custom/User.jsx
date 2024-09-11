@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Unauth from "./Unauth";
+const Unauth = lazy(() => import("./Unauth"));
 import { UserCircle, ArrowUpNarrowWide, SquareMenu } from "lucide-react";
 import { Outlet } from "react-router-dom";
+import Navbar from "../universal/Navbar";
 
 import "./User.css";
 
@@ -17,13 +18,14 @@ const User = () => {
   let token;
   if (queryParams.has("token")) {
     token = queryParams.get("token");
+    localStorage.setItem("token", token);
   } else {
     token = localStorage.getItem("token");
   }
   useEffect(() => {
     if (token) {
       axios
-        .post("http://localhost:3000/auth", { token })
+        .post("https://localhost:3000/api/auth", { token })
         .then((response) => {
           setIsAuthenticated(response.data.level);
           console.log(response.data);
@@ -31,51 +33,67 @@ const User = () => {
         })
         .catch((e) => {
           console.log(e);
-          navigate("/form/main");
+          navigate("/form/main", { replace: true });
+          window.location.reload();
         });
     } else if (location.pathname !== "/register") {
-      navigate("/form/main");
+      navigate("/form/main", { replace: true });
+      window.location.reload();
     }
   }, [navigate, location.pathname, token, isAuthenticated]);
   const menu = [
     {
       link: "profile",
       item: "Profile",
-      icons: <UserCircle strokeWidth={1.5} color="#3da33d" size={32} />,
+      icons: <UserCircle strokeWidth={1} color="#3da33d" size={32} />,
     },
     {
       link: "progress",
       item: "Progress",
-      icons: <ArrowUpNarrowWide strokeWidth={1.5} color="#3da33d" size={32} />,
+      icons: <ArrowUpNarrowWide strokeWidth={1} color="#3da33d" size={32} />,
     },
     {
       link: "programs",
       item: "Programs",
-      icons: <SquareMenu strokeWidth={1.5} color="#3da33d" size={32} />,
+      icons: <SquareMenu strokeWidth={1} color="#3da33d" size={32} />,
     },
   ];
+
   const LINK_STYLES = {
-    padding: "0.5rem 1rem",
+    padding: "0.5rem",
     width: "100%",
-    color: "var(--primary-color)",
+    color: "#3da33d",
     display: "flex",
     justifyContet: "center",
     alignItems: "center",
     gap: ".5rem",
+    fontWeight: 300,
   };
-
+  useEffect(() => {}, [location.pathname]);
   return (
     <>
       {isAuthenticated === 1 ? (
         <>
-          <main style={{ display: "flex", width: "100%" }}>
+          <Navbar
+            user={true}
+            img={
+              userData.Image && userData.Image.path.replace("frontend", "..")
+            }
+          />
+          <main
+            style={{
+              display: "flex",
+              width: "100%",
+              height: "calc(100vh - 85px)",
+            }}
+          >
             <div
               className="expand"
               style={{
                 flexShrink: 0,
               }}
-              onMouseEnter={() => setShow((prev) => !prev)}
-              onMouseLeave={() => setShow((prev) => !prev)}
+              onMouseEnter={() => setShow(() => true)}
+              onMouseLeave={() => setShow(() => false)}
             >
               <div>
                 {menu.map((menuItem, key) => {

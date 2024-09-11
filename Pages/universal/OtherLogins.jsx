@@ -23,7 +23,9 @@ const OtherLogins = () => {
           width: "70px",
         }}
       >
-        <img src={Facebook} alt="" />
+        <a href="https://localhost:3000/api/auth/facebook">
+          <img src={Facebook} alt="" />
+        </a>
       </Button>
       <Button
         style={{
@@ -35,7 +37,7 @@ const OtherLogins = () => {
           width: "70px",
         }}
       >
-        <a href="http://localhost:5173/auth/google">
+        <a href="https://localhost:3000/api/auth/google">
           <img src={Google} alt="" />
         </a>
       </Button>

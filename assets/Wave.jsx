@@ -1,5 +1,4 @@
-import React from "react";
-
+import PropTypes from "prop-types";
 function Wave({ color, viewBox, height, width, className, bg }) {
   return (
     <>
@@ -22,5 +21,12 @@ function Wave({ color, viewBox, height, width, className, bg }) {
     </>
   );
 }
-
+Wave.propTypes = {
+  color: PropTypes.string,
+  viewBox: PropTypes.string,
+  height: PropTypes.string,
+  width: PropTypes.string,
+  className: PropTypes.string,
+  bg: PropTypes.string,
+};
 export default Wave;

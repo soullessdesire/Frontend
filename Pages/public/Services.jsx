@@ -1,9 +1,15 @@
-import Footer from "../universal/Footer";
-import Wave from "../../assets/Wave";
+import { lazy } from "react";
+
+const Footer = lazy(() => import("../universal/Footer"));
+const Wave = lazy(() => import("../../assets/Wave"));
 
 const Services = () => {
   return (
-    <>
+    <div
+      style={{
+        paddingTop: "85px",
+      }}
+    >
       <br />
       <br />
       <br />
@@ -13,6 +19,7 @@ const Services = () => {
           width: "100%",
           height: "fit-content",
         }}
+        className="main"
       >
         <h1
           style={{
@@ -34,7 +41,7 @@ const Services = () => {
           justifyContent: "center",
         }}
       >
-        <Wave viewBox={" 0 0 450 120"} color={"white"} />
+        <Wave viewBox={"0 0 450 120"} color={"white"} />
         <div className="ser_divs margin_b" style={{ marginInline: "3rem" }}>
           <div
             className="phy_img img"
@@ -100,7 +107,7 @@ const Services = () => {
       </div>
       <Wave color={"#3da33d"} />
       <Footer />
-    </>
+    </div>
   );
 };
 

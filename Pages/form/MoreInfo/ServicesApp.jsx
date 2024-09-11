@@ -54,7 +54,7 @@ const ServicesApp = () => {
         <label
           style={{
             fontSize: "18px",
-            color: "var(--primary-color)",
+            color: "#3da33d",
           }}
         >
           Services Needed
@@ -157,7 +157,7 @@ const ServicesApp = () => {
           color: "white",
           border: "none",
           backgroundColor: `${
-            isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+            isDisabled ? "var(--disabled-color)" : "#3da33d"
           }`,
         }}
         type={"submit"}

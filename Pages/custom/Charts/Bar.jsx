@@ -1,4 +1,3 @@
-import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -18,7 +17,27 @@ ChartJS.register(
   Legend
 );
 const BarGraph = () => {
-  const options = {};
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        display: false,
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        display: false,
+        grid: {
+          display: true,
+        },
+      },
+    },
+  };
   const data = {
     labels: [
       "Rent",
@@ -31,13 +50,13 @@ const BarGraph = () => {
       {
         label: "Expenses",
         data: [1200, 200, 340, 180, 100],
-        backgroundColor: "rgba(255,99,132,.2)",
-        borderColor: "rgba(54,162,235,1)",
+        backgroundColor: "#3da33d",
+        borderColor: "#00000000",
+        borderRadius: "8px",
         borderWidth: 1,
       },
     ],
   };
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data}></Bar>;
 };
-
 export default BarGraph;

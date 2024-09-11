@@ -58,7 +58,7 @@ const Select = () => {
   const handleItemClick = (e) => {
     setInputValue(e.target.textContent);
     const after = document.querySelector(".select .after").style;
-    after.color = "var(--primary-color)";
+    after.color = "#3da33d";
     after.top = "30%";
     after.fontSize = "12px";
     after.transition = "all 3s ease-in-out 0";

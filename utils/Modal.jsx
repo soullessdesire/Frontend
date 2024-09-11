@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { X, Check } from "lucide-react";
+import "../Pages/custom/User.css";
 
 const Modal = ({ children, show, closeModal, window }) => {
   if (!show) return null;
@@ -33,7 +34,7 @@ const Modal = ({ children, show, closeModal, window }) => {
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: "white",
-                  color: "var(--primary-color)",
+                  color: "#3da33d",
                 }}
               >
                 <Check strokeWidth={1.5} />

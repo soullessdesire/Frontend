@@ -147,7 +147,7 @@ const NameBirth = () => {
           color: "white",
           border: "none",
           backgroundColor: `${
-            isDisabled ? "var(--disabled-color)" : "var(--primary-color)"
+            isDisabled ? "var(--disabled-color)" : "#3da33d"
           }`,
         }}
         to={"/form/moreinfo/gender&status"}

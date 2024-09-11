@@ -47,7 +47,7 @@ const MoreInfo = () => {
 
     Data.append("profilePic", file);
     axios
-      .post("http://localhost:3000/api/users/username", Data, {
+      .post("https://localhost:3000/api/users/username", Data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -106,7 +106,7 @@ const MoreInfo = () => {
       <div
         className="nusu"
         style={{
-          background: "var(--primary-color)",
+          background: "#3da33d",
         }}
       >
         <div>

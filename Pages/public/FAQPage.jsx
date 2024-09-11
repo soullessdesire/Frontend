@@ -1,11 +1,10 @@
-import Navbar from "../universal/Navbar";
-import FAQ from "./FAQ";
-import Footer from "../universal/Footer";
+import { lazy } from "react";
+const FAQ = lazy(() => import("./FAQ"));
+const Footer = lazy(() => import("../universal/Footer"));
 
 const FAQPage = () => {
   return (
     <>
-      <Navbar form={true} />
       <br />
       <br />
       <br />

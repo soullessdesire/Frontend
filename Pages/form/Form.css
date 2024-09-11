@@ -59,7 +59,7 @@ form input:not(form input[type="checkbox"]) {
   margin: 3% 3% 3% 0;
 }
 form input:not(form input[type="checkbox"]):focus {
-  border: var(--primary-color) 1px solid;
+  border: #3da33d 1px solid;
 }
 form .input_wrapper {
   position: relative;

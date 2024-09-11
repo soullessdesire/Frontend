@@ -18,7 +18,7 @@ const UserProfile = () => {
     <div
       style={{
         display: "flex",
-        flexGrow: "1",
+        flexGrow: 1,
         height: "fit-content",
       }}
     >
@@ -29,7 +29,7 @@ const UserProfile = () => {
           marginLeft: ".1rem",
           overflow: "hidden scroll",
           height: "calc(100vh - 90px)",
-          flexGrow: "1",
+          flexGrow: 1,
         }}
       >
         <div
@@ -39,19 +39,14 @@ const UserProfile = () => {
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
+            flexShrink: 0,
           }}
         >
           <div className="profile">
-            {userData.Image.path ? (
+            {userData.Image ? (
               <img
-                src={"..\\"
-                  .concat(userData.Image.path)
-                  .replace(/\\{2,2}/g, "/")
-                  .replace("frontend\\", "")}
+                src={userData.Image.path.replace("frontend", "..")}
                 width={"85%"}
-                style={{
-                  aspectRatio: "4/3",
-                }}
               />
             ) : (
               <AccountCircleIcon sx={{ color: "#3da33d", fontSize: 80 }} />
@@ -143,6 +138,7 @@ const UserProfile = () => {
             height: "fit-content",
             paddingLeft: "1rem",
             paddingTop: "1.5rem",
+            flexGrow: 1,
           }}
         >
           <div className="info">
@@ -158,7 +154,7 @@ const UserProfile = () => {
               <Button
                 style={{
                   color: "#3da33d",
-                  width: "8rem",
+                  width: "10rem",
                   marginRight: "1rem",
                   marginBlock: "1rem",
                   height: "3rem",
@@ -167,6 +163,8 @@ const UserProfile = () => {
                   alignItems: "center",
                   border: "none",
                   gap: ".2rem",
+                  padding: ".2rem",
+                  borderRadius: "8px",
                 }}
               >
                 <img src={chat} alt="" width={"30px"} />
@@ -176,7 +174,7 @@ const UserProfile = () => {
                 style={{
                   background: "#b9f9b3",
                   color: "#3da33d",
-                  width: "8rem",
+                  width: "10rem",
                   marginInline: "1rem",
                   marginBlock: "1rem",
                   height: "3rem",
@@ -185,6 +183,8 @@ const UserProfile = () => {
                   alignItems: "center",
                   border: "none",
                   gap: ".2rem",
+                  padding: ".2rem",
+                  borderRadius: "8px",
                 }}
               >
                 <img src={contacts} alt="" width={"30px"} />
@@ -210,7 +210,8 @@ const UserProfile = () => {
               <p>
                 Phone{":   "}
                 <span className="bgCc">
-                  {userData.personalDetails.phoneNumber}
+                  {userData.personalDetails &&
+                    userData.personalDetails.phoneNumber}
                 </span>
               </p>
               <br />
@@ -218,14 +219,14 @@ const UserProfile = () => {
               <p>
                 Address{":   "}
                 <span className="bgCc">
-                  {userData.personalDetails.phoneNumber}
+                  {userData.personalDetails && userData.personalDetails.Addres}
                 </span>
               </p>
               <br />
               <br />
               <p>
                 Email{":   "}
-                <span className="bgCc">{userData.email}</span>
+                <span className="bgCc">{userData.email && userData.email}</span>
               </p>
               <br />
               <br />
@@ -249,14 +250,17 @@ const UserProfile = () => {
               <p>
                 BirthDay {":   "}
                 <span className="bgCc">
-                  {userData.personalDetails.dateOfBirth}
+                  {userData.personalDetails &&
+                    userData.personalDetails.dateOfBirth}
                 </span>
               </p>
               <br />
               <br />
               <p>
                 Gender{":   "}
-                <span className="bgCc">{userData.personalDetails.Gender}</span>
+                <span className="bgCc">
+                  {userData.personalDetails && userData.personalDetails.Gender}
+                </span>
               </p>
               <br />
               <br />

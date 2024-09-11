@@ -1,9 +1,10 @@
 import { Camera } from "@mui/icons-material";
-import Vector1 from "../../assets/Vector1";
-import FAQ from "./FAQ";
-import Decoration from "../../assets/Decoration";
-import Wave from "../../assets/Wave";
-import Footer from "../universal/Footer";
+import { lazy } from "react";
+const Vector1 = lazy(() => import("../../assets/Vector1"));
+const FAQ = lazy(() => import("./FAQ"));
+const Decoration = lazy(() => import("../../assets/Decoration"));
+const Wave = lazy(() => import("../../assets/Wave"));
+const Footer = lazy(() => import("../universal/Footer"));
 
 function Home() {
   return (
@@ -12,13 +13,25 @@ function Home() {
         <section className="h__section">
           <div className="deco"></div>
           <div className="content">
-            <h1 style={{ fontFamily: "Baskervville SC", fontWeight: 400 }}>
+            <h1
+              style={{
+                fontFamily: "Baskervville SC",
+                fontWeight: 400,
+                color: "white",
+              }}
+            >
               Discover Healing & Hope
             </h1>
-            <h4 style={{ fontFamily: "Arsenal SC" }}>
+            <h4 style={{ fontFamily: "Arsenal SC", color: "white" }}>
               Your Journey to Recovery Starts Here{" "}
             </h4>
-            <p style={{ fontFamily: "Inria Sans", fontSize: "24ox" }}>
+            <p
+              style={{
+                fontFamily: "Inria Sans",
+                fontSize: "24ox",
+                color: "white",
+              }}
+            >
               Welcome to Serene. Our dedicated team is here to guide you towards
               recovery, providing compassionate care every step of the way. With
               personalized treatment plans, we&apos;re committed to helping you
@@ -54,7 +67,12 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className="nd_section">
+        <section
+          className="nd_section"
+          style={{
+            backgroundColor: "#d9d9d9",
+          }}
+        >
           <Wave color={"white"} />
           <div className="tp_h">
             <div className="right">

@@ -47,7 +47,7 @@ const MoreInfo = () => {
 
     Data.append("profilePic", file);
     axios
-      .post("https://localhost:3000/api/users/username", Data, {
+      .post("https://localhost:3000/api/users", Data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -66,6 +66,7 @@ const MoreInfo = () => {
         console.error(error);
         navigate("/form/main");
         console.error("Error submitting form:", error.response.data.message);
+        // window.location.href = "https://localhost:5173/form/main";
       });
   };
   const handleFormDataChange = useCallback(

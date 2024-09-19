@@ -22,7 +22,6 @@ const NameBirth = () => {
     }
 
     Object.keys(someData).forEach((key) => {
-      console.log(key, someData[key]);
       handleFormDataChange(key, someData[key]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -24,23 +24,24 @@ function Signup() {
     setIsDisabled(!Object.values(formData).every((value) => value !== ""));
   }, [formData]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .get(`https://localhost:3000/api/users/username/${formData.username}`)
-      .then((response) => {
-        const data = response.data;
-        if (data.length) {
-          createErrorNotification("This username is already taken");
-          throw new Error("Username is taken");
-        } else {
-          navigate("/form/moreinfo/name&birth", { state: formData });
-        }
-      })
-      .catch((err) => {
-        createErrorNotification(err.message);
-        console.log(err);
-      });
+    try {
+      const response = await axios.get(
+        `https://localhost:3000/api/users?username="${formData.username}"&email="${formData.email}"`
+      );
+      console.log(response.data);
+      if (!response.data) {
+        navigate("/form/moreinfo/name&birth", { state: formData });
+      } else {
+        createErrorNotification(
+          "The username or email is already in the system"
+        );
+      }
+    } catch (err) {
+      createErrorNotification(err.message);
+      console.log(err);
+    }
   };
   const handleKeyDown = (event) => {
     const after = event.target.parentNode.querySelector(".after").style;

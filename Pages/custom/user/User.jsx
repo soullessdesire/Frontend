@@ -1,12 +1,35 @@
+// non-lazy imports
 import { useEffect, useState, lazy } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-const Unauth = lazy(() => import("./Unauth"));
-import { UserCircle, ArrowUpNarrowWide, SquareMenu } from "lucide-react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../universal/Navbar";
+import axios from "axios";
 
+// preferred not to be lazy imports imports
+import Navbar from "../../universal/Navbar";
+
+// component imports
+const Unauth = lazy(() => import("./Unauth"));
+
+//css imports
 import "./User.css";
+
+// lucide-react lazy imports
+const UserPen = lazy(() =>
+  import("lucide-react").then((module) => ({ default: module.UserPen }))
+);
+const SquareMenu = lazy(() =>
+  import("lucide-react").then((module) => ({ default: module.SquareMenu }))
+);
+const ArrowUpNarrowWide = lazy(() =>
+  import("lucide-react").then((module) => ({
+    default: module.ArrowUpNarrowWide,
+  }))
+);
+const MessageCircleMore = lazy(() =>
+  import("lucide-react").then((module) => ({
+    default: module.MessageCircleMore,
+  }))
+);
 
 const User = () => {
   const [userData, setUserData] = useState({});
@@ -45,7 +68,7 @@ const User = () => {
     {
       link: "profile",
       item: "Profile",
-      icons: <UserCircle strokeWidth={1} color="#3da33d" size={32} />,
+      icons: <UserPen strokeWidth={1} color="#3da33d" size={32} />,
     },
     {
       link: "progress",
@@ -56,6 +79,11 @@ const User = () => {
       link: "programs",
       item: "Programs",
       icons: <SquareMenu strokeWidth={1} color="#3da33d" size={32} />,
+    },
+    {
+      link: "chats",
+      item: "Chats",
+      icons: <MessageCircleMore strokeWidth={1} color="#3da33d" size={32} />,
     },
   ];
 

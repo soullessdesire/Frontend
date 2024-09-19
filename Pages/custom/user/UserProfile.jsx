@@ -1,15 +1,24 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import chat from "../../assets/392521_bubble_chat_comment_message_talk_icon.svg";
-import contacts from "../../assets/510857_account_contacts_group_people_users_icon.svg";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { lazy } from "react";
+
 import { useOutletContext, useParams } from "react-router-dom";
-import Button from "../universal/Button";
+import Button from "../../universal/Button";
+import capitalize from "../../../utils/capitalize";
+
+const MessageSquare = lazy(() =>
+  import("lucide-react").then((module) => ({ default: module.MessageSquare }))
+);
+const CircleUserRound = lazy(() =>
+  import("lucide-react").then((module) => ({ default: module.CircleUserRound }))
+);
+const Contact2 = lazy(() =>
+  import("lucide-react").then((module) => ({ default: module.Contact2 }))
+);
+const MapPin = lazy(() =>
+  import("lucide-react").then((module) => ({ default: module.MapPin }))
+);
 
 const UserProfile = () => {
   const { userData } = useOutletContext();
-  function capitalize(str) {
-    return str.replace(/^./, (char) => char.toUpperCase());
-  }
 
   const work = false;
   const workPlace = "Nairobi";
@@ -49,7 +58,7 @@ const UserProfile = () => {
                 width={"85%"}
               />
             ) : (
-              <AccountCircleIcon sx={{ color: "#3da33d", fontSize: 80 }} />
+              <CircleUserRound />
             )}
           </div>
           <div className="border_top work por" style={{ height: "360px" }}>
@@ -144,8 +153,8 @@ const UserProfile = () => {
           <div className="info">
             <div>
               <h1>
-                {capitalize(username)}{" "}
-                <LocationOnIcon sx={{ color: "#818181" }} />
+                {capitalize(username)}
+                <MapPin strokeWidth={1} color="#000" />
               </h1>
               <p style={{ color: "#818181" }}>location</p>
               <p>{"work"}</p>
@@ -167,7 +176,7 @@ const UserProfile = () => {
                   borderRadius: "8px",
                 }}
               >
-                <img src={chat} alt="" width={"30px"} />
+                <MessageSquare strokeWidth={1} color="#000" size={28} />
                 Send message
               </Button>
               <Button
@@ -187,7 +196,7 @@ const UserProfile = () => {
                   borderRadius: "8px",
                 }}
               >
-                <img src={contacts} alt="" width={"30px"} />
+                <Contact2 strokeWidth={1} size={28} />
                 Send Email
               </Button>
             </div>

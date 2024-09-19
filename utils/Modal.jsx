@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { X, Check } from "lucide-react";
-import "../Pages/custom/User.css";
+import "../Pages/custom/user/User.css";
 
 const Modal = ({ children, show, closeModal, window }) => {
   if (!show) return null;
@@ -15,7 +15,9 @@ const Modal = ({ children, show, closeModal, window }) => {
                 <X strokeWidth={1.5} />
               </button>
             </div>
-            {children}
+            <div style={{ maxHeight: "500px", overflow: "hidden scroll" }}>
+              {children}
+            </div>
             <div
               className="content"
               style={{

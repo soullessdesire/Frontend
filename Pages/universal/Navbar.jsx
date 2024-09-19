@@ -65,6 +65,10 @@ function Navbar({ login, ul, scroll, user, img }) {
       item: "About",
     },
   ];
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "https://localhost:5173/form/main";
+  };
   return (
     <>
       <nav
@@ -180,6 +184,7 @@ function Navbar({ login, ul, scroll, user, img }) {
                   background: "transparent",
                   color: "#3da33d",
                 }}
+                onClick={handleLogout}
               >
                 Log out
               </button>

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Modal from "../../utils/Modal";
+import Modal from "../../../utils/Modal";
 import Table from "./Table";
-import Button from "../universal/Button";
+import Button from "../../universal/Button";
 // "52:8E:7A:B8:FE:E2";
 
 const Programs = () => {

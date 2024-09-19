@@ -1,19 +1,32 @@
+//react and react-router-dom imports
 import { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import "../Pages/universal/public.css";
-import "./App.css";
+
+//base requirement imports
 import Navbar from "../Pages/universal/Navbar";
 import Loading from "../assets/Loading";
-const Programs = lazy(() => import("../Pages/custom/Programs"));
-const UserProfile = lazy(() => import("../Pages/custom/UserProfile"));
-const Progress = lazy(() => import("../Pages/custom/Progress"));
+import SuspenseRoute from "../utils/SuspenseRoute";
+
+//public site imports
 const FAQPage = lazy(() => import("../Pages/public/FAQPage"));
 const About = lazy(() => import("../Pages/public/About"));
 const Services = lazy(() => import("../Pages/public/Services"));
 const Home = lazy(() => import("../Pages/public/Home"));
-const User = lazy(() => import("../Pages/custom/User"));
-// import Employee from "../Pages/custom/Employee";
-// import Admin from "../Pages/custom/Admin";
+const User = lazy(() => import("../Pages/custom/user/User"));
+
+//user site imports
+const Programs = lazy(() => import("../Pages/custom/user/Programs"));
+const UserProfile = lazy(() => import("../Pages/custom/user/UserProfile"));
+const Progress = lazy(() => import("../Pages/custom/user/Progress"));
+const Chats = lazy(() => import("../Pages/custom/user/Chats"));
+
+//empolyee site imports
+import Employee from "../Pages/custom/employee/Employee";
+
+//admin site imports
+import Admin from "../Pages/custom/admin/Admin";
+
+//form site imports
 const Form = lazy(() => import("../Pages/form/Form"));
 const Page404 = lazy(() => import("../Pages/custom/Page404"));
 const NameBirth = lazy(() => import("../Pages/form/MoreInfo/NameBirth"));
@@ -27,11 +40,11 @@ const MoreInfo = lazy(() => import("../Pages/form/MoreInfo"));
 const MainForm = lazy(() => import("../Pages/form/MainForm"));
 const ForgotPassChange = lazy(() => import("../Pages/form/ForgotPassChange"));
 
+//css imports
+import "../Pages/universal/public.css";
+import "./App.css";
+
 function App() {
-  // const [loading, setLoading] = useState(true);
-  // document.addEventListener("DOMContentLoaded", (e) => {
-  //   setLoading(false);
-  // });
   const [scroll, setScroll] = useState(false);
   const [ul, setUl] = useState(true);
   const [login, setLogin] = useState(true);
@@ -68,111 +81,44 @@ function App() {
     <>
       <>
         {navbar && <Navbar login={login} ul={ul} scroll={scroll} />}
+
         <Routes>
-          <Route
-            path="/home"
-            element={
-              <Suspense fallback={<Loading />}>
-                <Home />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/faq"
-            element={
-              <Suspense fallback={<Loading />}>
-                <FAQPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <Suspense fallback={<Loading />}>
-                <About />
-              </Suspense>
-            }
-          />
+          {/* Public Pages */}
+          <Route path="/home" element={<SuspenseRoute Element={Home} />} />
+          <Route path="/faq" element={<SuspenseRoute Element={FAQPage} />} />
+          <Route path="/about" element={<SuspenseRoute Element={About} />} />
           <Route
             path="/services"
-            element={
-              <Suspense fallback={<Loading />}>
-                <Services />
-              </Suspense>
-            }
+            element={<SuspenseRoute Element={Services} />}
           />
-          <Route
-            path="*"
-            element={
-              <Suspense fallback={<Loading />}>
-                <Page404 />
-              </Suspense>
-            }
-          />
+          <Route path="*" element={<SuspenseRoute Element={Page404} />} />
 
-          <Route
-            path="/form"
-            element={
-              <Suspense fallback={<Loading />}>
-                <Form />
-              </Suspense>
-            }
-          >
-            <Route
-              path="main"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <MainForm />
-                </Suspense>
-              }
-            />
+          {/* Form Pages */}
+          <Route path="/form" element={<SuspenseRoute Element={Form} />}>
+            <Route path="main" element={<SuspenseRoute Element={MainForm} />} />
             <Route
               path="forgotpass"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <ForgotPassChange />
-                </Suspense>
-              }
+              element={<SuspenseRoute Element={ForgotPassChange} />}
             />
             <Route
               path="moreinfo"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <MoreInfo />
-                </Suspense>
-              }
+              element={<SuspenseRoute Element={MoreInfo} />}
             >
               <Route
                 path="name&birth"
-                element={
-                  <Suspense fallback={<Loading />}>
-                    <NameBirth />
-                  </Suspense>
-                }
+                element={<SuspenseRoute Element={NameBirth} />}
               />
               <Route
                 path="gender&status"
-                element={
-                  <Suspense fallback={<Loading />}>
-                    <GenderStatus />
-                  </Suspense>
-                }
+                element={<SuspenseRoute Element={GenderStatus} />}
               />
               <Route
                 path="address"
-                element={
-                  <Suspense fallback={<Loading />}>
-                    <Address />
-                  </Suspense>
-                }
+                element={<SuspenseRoute Element={Address} />}
               />
               <Route
                 path="religion&tribe"
-                element={
-                  <Suspense fallback={<Loading />}>
-                    <Religion />
-                  </Suspense>
-                }
+                element={<SuspenseRoute Element={Religion} />}
               />
               <Route
                 path="kin"
@@ -184,56 +130,46 @@ function App() {
               />
               <Route
                 path="profilepic"
-                element={
-                  <Suspense fallback={<Loading />}>
-                    <ProfilePic />
-                  </Suspense>
-                }
+                element={<SuspenseRoute Element={ProfilePic} />}
               />
               <Route
                 path="servicesapp"
-                element={
-                  <Suspense fallback={<Loading />}>
-                    <ServicesApp />
-                  </Suspense>
-                }
+                element={<SuspenseRoute Element={ServicesApp} />}
               />
             </Route>
           </Route>
 
+          {/* User Pages */}
           <Route
             path="/patient/:username"
-            element={
-              <Suspense fallback={<Loading />}>
-                <User />
-              </Suspense>
-            }
+            element={<SuspenseRoute Element={User} />}
           >
             <Route
               path="profile"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <UserProfile />
-                </Suspense>
-              }
+              element={<SuspenseRoute Element={UserProfile} />}
             />
             <Route
               path="progress"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <Progress />
-                </Suspense>
-              }
+              element={<SuspenseRoute Element={Progress} />}
             />
             <Route
               path="programs"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <Programs />
-                </Suspense>
-              }
+              element={<SuspenseRoute Element={Programs} />}
             />
+            <Route path="chats" element={<SuspenseRoute Element={Chats} />} />
           </Route>
+
+          {/* Employee Pages */}
+          <Route
+            path="/employee/:employeeName"
+            element={<SuspenseRoute Element={Employee} />}
+          ></Route>
+
+          {/* Admin Pages */}
+          <Route
+            path="/admin/:adminId"
+            element={<SuspenseRoute Element={Admin} />}
+          ></Route>
         </Routes>
       </>
     </>
